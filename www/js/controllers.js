@@ -56,6 +56,26 @@ angular.module('starter.controllers', [])
                 });
 })
 
+.controller('InfantilCtrl', function($scope, $http) {
+  $http({
+                    method: 'JSONP',
+                    url: 'http://www.zaragoza.es/buscador/select',
+                    params: {
+                        'json.wrf': 'JSON_CALLBACK',
+                        'wt': 'json',
+                        'start': 0,
+                        'rows':  100,
+                        'fl': 'uri,title,id,description,fechaInicio_dt,fechaFinal_dt,imagen_s,lugar_t,coordenadas_p_0_coordinate,coordenadas_p_1_coordinate,coordenadas_p',
+                        'q': '*:* AND -tipocontenido_s:estatico AND category:Actividades AND fechaInicio_dt:[* TO NOW+7DAY] AND fechaFinal_dt:[NOW+7DAY TO *]',
+                        'fq': 'dirigidoa_smultiple:\"Infancia\"'
+                    }
+                }).success(function(data, status, headers, config) {
+                    console.log(data)
+                    $scope.eventos = data.response.docs
+                }).error(function(data, status, headers, config) {
+                    console.log('Error:' + data)
+                });
+})
 
 .controller('EventoCtrl', function($scope, $stateParams) {
   console.log($stateParams)

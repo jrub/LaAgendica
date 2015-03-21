@@ -58,6 +58,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.infantil', {
+    url: "/infantil",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/eventos.html",
+        controller: 'InfantilCtrl'
+      }
+    }
+  })
+
   .state('app.single', {
     url: "/evento/:eventoId",
     views: {
