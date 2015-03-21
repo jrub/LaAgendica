@@ -33,8 +33,8 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('TeatroCtrl', function($scope, $http) {
-  
+.controller('EventosCtrl', function($scope, $http, $stateParams) {
+  console.log($stateParams)
   $http({
                     method: 'JSONP',
                     url: 'http://www.zaragoza.es/buscador/select',
@@ -55,27 +55,6 @@ angular.module('starter.controllers', [])
                 });
 })
 
-.controller('MusicaCtrl', function($scope, $http) {
-  
-  $http({
-                    method: 'JSONP',
-                    url: 'http://www.zaragoza.es/buscador/select',
-                    params: {
-                        'json.wrf': 'JSON_CALLBACK',
-                        'wt': 'json',
-                        'start': 0,
-                        'rows':  100,
-                        'fl': 'uri,title,id,texto_t,x_coordinate,y_coordinate,last_modified,temas_smultiple',
-                        'q': '*:* AND -tipocontenido_s:estatico AND category:Actividades AND fechaInicio_dt:[* TO NOW+7DAY] AND fechaFinal_dt:[NOW+7DAY TO *]',
-                        'fq': 'temas_smultiple:(\"Musica\"),(\"musica\")'
-                    }
-                }).success(function(data, status, headers, config) {
-                    console.log(data)
-                    $scope.eventos = data.response.docs
-                }).error(function(data, status, headers, config) {
-                    console.log('Error:' + data)
-                });
-})
 
 .controller('EventoCtrl', function($scope, $stateParams) {
   console.log($stateParams)

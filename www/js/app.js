@@ -47,29 +47,19 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-  
-  .state('app.teatro', {
-    url: "/teatro",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/eventos.html",
-        controller: 'TeatroCtrl'
-      }
-    }
-  })
 
-  .state('app.musica', {
-    url: "/musica",
+  .state('app.eventos', {
+    url: "/eventos/:tipo",
     views: {
       'menuContent': {
         templateUrl: "templates/eventos.html",
-        controller: 'MusicaCtrl'
+        controller: 'EventosCtrl'
       }
     }
   })
 
   .state('app.single', {
-    url: "/eventos/:eventoId",
+    url: "/evento/:eventoId",
     views: {
       'menuContent': {
         templateUrl: "templates/evento.html",
@@ -78,5 +68,5 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/eventos');
+  $urlRouterProvider.otherwise('/app/eventos/musica');
 });
