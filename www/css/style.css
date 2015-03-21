@@ -1,6 +1,7 @@
 /* Empty. Add your own CSS if you like */
 .evimage {
-  width: 100%;
+  max-width: 100%;
+  min-width: 50%;
   margin-left: auto;
   margin-right: auto;
   display: block; }
