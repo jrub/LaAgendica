@@ -57,7 +57,7 @@ angular.module('starter.controllers', [])
                 });
 })
 
-.controller('InfantilCtrl', function($scope, $http) {
+.controller('InfantilCtrl', function($scope, $http, $rootScope) {
   $http({
                     method: 'JSONP',
                     url: 'http://www.zaragoza.es/buscador/select',
@@ -73,6 +73,7 @@ angular.module('starter.controllers', [])
                 }).success(function(data, status, headers, config) {
                     console.log(data)
                     $scope.eventos = data.response.docs
+                    $rootScope.eventos = data.response.docs
                 }).error(function(data, status, headers, config) {
                     console.log('Error:' + data)
                 });
