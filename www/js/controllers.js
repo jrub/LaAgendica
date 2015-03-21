@@ -33,8 +33,30 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('EventosCtrl', function($scope, $http) {
-  var url = 'http://www.zaragoza.es/buscador/select?wt=json&q=*:*%20AND%20-tipocontenido_s:estatico%20AND%20category:Actividades%20AND%20fechaInicio_dt:[*%20TO%20NOW%2B7DAY]%20AND%20fechaFinal_dt:[NOW%2B7DAY%20TO%20*]&fq=temas_smultiple:(%22Musica%22),(%22musica%22)';
+.controller('TeatroCtrl', function($scope, $http) {
+  
+  $http({
+                    method: 'JSONP',
+                    url: 'http://www.zaragoza.es/buscador/select',
+                    params: {
+                        'json.wrf': 'JSON_CALLBACK',
+                        'wt': 'json',
+                        'start': 0,
+                        'rows':  100,
+                        'fl': 'uri,title,id,description,fechaInicio_dt,fechaFinal_dt,imagen_s,lugar_t,coordenadas_p_0_coordinate,coordenadas_p_1_coordinate,coordenadas_p',
+                        'q': '*:* AND -tipocontenido_s:estatico AND category:Actividades AND fechaInicio_dt:[* TO NOW+7DAY] AND fechaFinal_dt:[NOW+7DAY TO *]',
+                        'fq': 'temas_smultiple:(\"Teatro\"),(\"teatro\")'
+                    }
+                }).success(function(data, status, headers, config) {
+                    console.log(data)
+                    $scope.eventos = data.response.docs
+                }).error(function(data, status, headers, config) {
+                    console.log('Error:' + data)
+                });
+})
+
+.controller('MusicaCtrl', function($scope, $http) {
+  
   $http({
                     method: 'JSONP',
                     url: 'http://www.zaragoza.es/buscador/select',
@@ -56,4 +78,5 @@ angular.module('starter.controllers', [])
 })
 
 .controller('EventoCtrl', function($scope, $stateParams) {
+  console.log($stateParams)
 });

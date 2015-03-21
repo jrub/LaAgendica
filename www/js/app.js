@@ -47,15 +47,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
     }
   })
-    .state('app.eventos', {
-      url: "/eventos",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/eventos.html",
-          controller: 'EventosCtrl'
-        }
+  
+  .state('app.teatro', {
+    url: "/teatro",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/eventos.html",
+        controller: 'TeatroCtrl'
       }
-    })
+    }
+  })
+
+  .state('app.musica', {
+    url: "/musica",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/eventos.html",
+        controller: 'MusicaCtrl'
+      }
+    }
+  })
 
   .state('app.single', {
     url: "/eventos/:eventoId",
