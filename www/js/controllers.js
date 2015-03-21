@@ -33,15 +33,26 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('EventosCtrl', function($scope) {
-  $scope.eventos = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
+.controller('EventosCtrl', function($scope, $http) {
+  var url = 'http://www.zaragoza.es/buscador/select?wt=json&q=*:*%20AND%20-tipocontenido_s:estatico%20AND%20category:Actividades%20AND%20fechaInicio_dt:[*%20TO%20NOW%2B7DAY]%20AND%20fechaFinal_dt:[NOW%2B7DAY%20TO%20*]&fq=temas_smultiple:(%22Musica%22),(%22musica%22)';
+  $http({
+                    method: 'JSONP',
+                    url: 'http://www.zaragoza.es/buscador/select',
+                    params: {
+                        'json.wrf': 'JSON_CALLBACK',
+                        'wt': 'json',
+                        'start': 0,
+                        'rows':  100,
+                        'fl': 'uri,title,id,texto_t,x_coordinate,y_coordinate,last_modified,temas_smultiple',
+                        'q': '*:* AND -tipocontenido_s:estatico AND category:Actividades AND fechaInicio_dt:[* TO NOW+7DAY] AND fechaFinal_dt:[NOW+7DAY TO *]',
+                        'fq': 'temas_smultiple:(\"Musica\"),(\"musica\")'
+                    }
+                }).success(function(data, status, headers, config) {
+                    console.log(data)
+                    $scope.eventos = data.response.docs
+                }).error(function(data, status, headers, config) {
+                    console.log('Error:' + data)
+                });
 })
 
 .controller('EventoCtrl', function($scope, $stateParams) {
