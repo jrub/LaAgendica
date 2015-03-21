@@ -35,6 +35,7 @@ angular.module('starter.controllers', [])
 
 .controller('EventosCtrl', function($scope, $http, $stateParams) {
   console.log($stateParams)
+  var tipoCap = $stateParams.tipo.charAt(0).toUpperCase() + $stateParams.tipo.slice(1);
   $http({
                     method: 'JSONP',
                     url: 'http://www.zaragoza.es/buscador/select',
@@ -45,7 +46,7 @@ angular.module('starter.controllers', [])
                         'rows':  100,
                         'fl': 'uri,title,id,description,fechaInicio_dt,fechaFinal_dt,imagen_s,lugar_t,coordenadas_p_0_coordinate,coordenadas_p_1_coordinate,coordenadas_p',
                         'q': '*:* AND -tipocontenido_s:estatico AND category:Actividades AND fechaInicio_dt:[* TO NOW+7DAY] AND fechaFinal_dt:[NOW+7DAY TO *]',
-                        'fq': 'temas_smultiple:(\"Teatro\"),(\"teatro\")'
+                        'fq': 'temas_smultiple:(\"' + $stateParams.tipo + '\"),(\"' + tipoCap + '\")'
                     }
                 }).success(function(data, status, headers, config) {
                     console.log(data)
