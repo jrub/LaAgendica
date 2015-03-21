@@ -33,7 +33,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('EventosCtrl', function($scope, $http, $stateParams) {
+.controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
   console.log($stateParams)
   var tipoCap = $stateParams.tipo.charAt(0).toUpperCase() + $stateParams.tipo.slice(1);
   $http({
@@ -51,6 +51,7 @@ angular.module('starter.controllers', [])
                 }).success(function(data, status, headers, config) {
                     console.log(data)
                     $scope.eventos = data.response.docs
+                    $rootScope.eventos = data.response.docs
                 }).error(function(data, status, headers, config) {
                     console.log('Error:' + data)
                 });
@@ -77,6 +78,8 @@ angular.module('starter.controllers', [])
                 });
 })
 
-.controller('EventoCtrl', function($scope, $stateParams) {
+.controller('EventoCtrl', function($scope, $stateParams, $rootScope) {
   console.log($stateParams)
+  console.log($rootScope.eventos[$stateParams.eventoId]);
+  $scope.evento = $rootScope.eventos[$stateParams.eventoId];
 });
