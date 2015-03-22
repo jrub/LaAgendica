@@ -101,6 +101,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.map', {
+    url: "/map",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/map.html",
+        controller: 'MapCtrl'
+      }
+    }
+  })
+
   .state('app.single', {
     url: "/evento/:eventoId",
     views: {
