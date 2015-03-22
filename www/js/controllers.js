@@ -55,6 +55,7 @@ angular.module('starter.controllers', [])
                 }).error(function(data, status, headers, config) {
                     console.log('Error:' + data)
                 });
+
 })
 
 .controller('InfantilCtrl', function($scope, $http, $rootScope) {
@@ -79,8 +80,24 @@ angular.module('starter.controllers', [])
                 });
 })
 
-.controller('EventoCtrl', function($scope, $stateParams, $rootScope) {
-  console.log($stateParams)
-  console.log($rootScope.eventos[$stateParams.eventoId]);
+.controller('FavoritosCtrl', function($scope, $localstorage, $rootScope) {
+  $scope.eventos = $localstorage.allObjects()
+  $rootScope.eventos = $scope.eventos
+})
+
+.controller('EventoCtrl', function($scope, $stateParams, $rootScope, $localstorage, $ionicPopup) {
   $scope.evento = $rootScope.eventos[$stateParams.eventoId];
+
+  $scope.marcarFavorito = function(evento) {
+    $localstorage.setObject(evento.id, evento);
+    var alertPopup = $ionicPopup.alert({
+      title: 'Favoritos',
+      template: 'Favorito guardado con éxito'
+    });
+  }
+
+  $scope.isFavorito = function(eventoId) {
+    return $localstorage.getObject(eventoId)
+  }
+
 });

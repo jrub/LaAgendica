@@ -50,6 +50,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
   .state('app.eventos', {
     url: "/eventos/:tipo",
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: "templates/eventos.html",
@@ -60,10 +61,22 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
   .state('app.infantil', {
     url: "/infantil",
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: "templates/eventos.html",
         controller: 'InfantilCtrl'
+      }
+    }
+  })
+
+  .state('app.favoritos', {
+    url: "/favoritos",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/eventos.html",
+        controller: 'FavoritosCtrl'
       }
     }
   })
@@ -79,4 +92,39 @@ angular.module('starter', ['ionic', 'starter.controllers'])
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/eventos/musica');
-});
+})
+
+.factory('$localstorage', ['$window', function($window) {
+  return {
+    set: function(key, value) {
+      $window.localStorage[key] = value;
+    },
+    get: function(key, defaultValue) {
+      return $window.localStorage[key] || defaultValue;
+    },
+    setObject: function(key, value) {
+      $window.localStorage[key] = JSON.stringify(value);
+    },
+    getObject: function(key) {
+      return JSON.parse($window.localStorage[key] || '{}');
+    },
+    allObjects: function() {
+      var archive = [],
+      keys = Object.keys(localStorage),
+      i = 0;
+
+      for (; i < keys.length; i++) {
+        var key = keys[i]
+        var fav = this.getObject(key)
+        console.log('El fav')
+        console.log(fav.title)
+        archive.push(fav);
+      }
+      return archive;
+    },
+    clearAll: function() {
+      $window.localStorage.clear()
+    }
+  }
+}]);
+
