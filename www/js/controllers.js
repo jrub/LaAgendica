@@ -109,10 +109,28 @@ angular.module('starter.controllers', ['ngSanitize'])
   $rootScope.eventos = $scope.eventos
 })
 
-.controller('DestacadoCtrl', function($scope, $stateParams, $rootScope) {
+.controller('DestacadoCtrl', function($scope, $stateParams, $rootScope, $localstorage, $ionicPopup) {
   console.log($stateParams)
   console.log($rootScope.eventos[$stateParams.eventoId]);
   $scope.evento = $rootScope.eventos[$stateParams.eventoId];
+
+  $scope.marcarFavorito = function(destacado) {
+    var destacadofav = {
+      id : destacado.id.value,
+      description : destacado.description.value,
+      title : destacado.title.value,
+      fechaInicio_dt : "",
+      fechaFinal_dt : "",
+      imagen_s : destacado.image.value
+      // coordinates (latitud en destacado) y lugar_t no usado
+    }
+    $localstorage.setObject(destacadofav.id, destacadofav);
+    var alertPopup = $ionicPopup.alert({
+      title: 'Favoritos',
+      template: 'Favorito guardado con éxito'
+    });
+  }
+
 })
 
 .controller('EventoCtrl', function($scope, $stateParams, $rootScope, $localstorage, $ionicPopup) {
