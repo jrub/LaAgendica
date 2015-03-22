@@ -157,4 +157,112 @@ angular.module('starter.controllers', ['ngSanitize'])
     return $localstorage.getObject(eventoId)
   }
 
-});
+})
+
+.controller('MapCtrl', function($scope, $ionicLoading, $compile, $localstorage, $state, $rootScope) {
+
+  var favs = $localstorage.allObjects()
+  $rootScope.eventos = favs;
+
+  console.log('entra mapa')
+    function initialize() {
+      console.log('inicializa mapa')
+
+      var map;
+      var myInfoWindows = [];
+
+      function getMyInfoWindows(i) {
+        console.log('entro en getMuyInfoWindows')
+        console.log(myInfoWindows)
+        console.log('i es ' + i)
+        console.log(myInfoWindows[i])
+        return myInfoWindows[i]
+      }
+
+      function addListenerGoogleMaps(i, marker) {
+        google.maps.event.addListener(marker, 'click', function() {
+          //infowindow.open(map,marker);
+          var myInfoWindow = getMyInfoWindows(i);
+          myInfoWindow.open(map, marker)
+        });
+      }
+
+      if (favs.length > 0) {
+        var myLatlng = new google.maps.LatLng(favs[0].coordenadas_p_0_coordinate, favs[0].coordenadas_p_1_coordinate);
+        var mapOptions = {
+          center: myLatlng,
+          zoom: 13,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("map"),
+            mapOptions);  
+      };
+      
+      for (var i = 0; i < favs.length; i++) {
+        var fav = favs[i]
+        console.log(fav)
+        var theLatlng = new google.maps.LatLng(fav.coordenadas_p_0_coordinate, fav.coordenadas_p_1_coordinate);
+        fav.index = i
+
+        $scope.fav = fav;
+        
+        //Marker + infowindow + angularjs compiled ng-click
+        var contentString = "<div><a ng-click='clickTest({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p></a></div>";
+        var compiled = $compile(contentString)($scope);
+
+        console.log("compiled")
+        console.log(compiled)
+        var infowindow = new google.maps.InfoWindow({
+          content: compiled[0]
+        });
+        myInfoWindows.push(infowindow)
+        console.log('infowindow')
+        console.log(infowindow)
+
+        var marker = new google.maps.Marker({
+          position: theLatlng,
+          map: map,
+          title: fav.title
+        });
+
+        addListenerGoogleMaps(i, marker)
+
+        // google.maps.event.addListener(marker, 'click', function() {
+        //   //infowindow.open(map,marker);
+        //   var myInfoWindow = getMyInfoWindows(i);
+        //   myInfoWindow.open(map, marker)
+        // });
+      }
+
+      $scope.map = map;
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    initialize()
+    
+    $scope.centerOnMe = function() {
+      console.log('centra mapa en ti')
+      if(!$scope.map) {
+        return;
+      }
+
+      $scope.loading = $ionicLoading.show({
+        content: 'Getting current location...',
+        showBackdrop: false
+      });
+
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+        $scope.loading.hide();
+      }, function(error) {
+        alert('Unable to get location: ' + error.message);
+      });
+    };
+    
+    $scope.clickTest = function(obj) {
+      console.log(obj)
+      $state.go('app.single', {eventoId: obj.index});
+    };
+    
+  })
+
+;
