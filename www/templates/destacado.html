@@ -10,7 +10,7 @@
 
       <div class="item item-body">
         <img class="evimage" src="{{evento.image.value}}">
-        <pre class="evpre">{{evento.description.value}}</pre>
+        <div class="evpre" ng-bind-html="evento.description.value"></div>
         <p>
           <a href="#" class="subdued">1 Like</a>
           <a href="#" class="subdued">5 Comments</a>
