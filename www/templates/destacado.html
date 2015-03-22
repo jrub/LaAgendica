@@ -5,7 +5,7 @@
       <div class="item item-avatar">
         <img src="{{evento.image.value}}">
         <h2>{{evento.title.value}}</h2>
-        <p>{{evento.fechaInicio_dt}} {{evento.fechaFinal_dt}}</p>
+        <p>Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</p>
       </div>
 
       <div class="item item-body">

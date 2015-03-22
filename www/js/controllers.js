@@ -124,8 +124,8 @@ angular.module('starter.controllers', ['ngSanitize'])
       id : destacado.id.value,
       description : destacado.description.value,
       title : destacado.title.value,
-      fechaInicio_dt : "",
-      fechaFinal_dt : "",
+      fechaInicio_dt : destacado.startDate.value,
+      fechaFinal_dt : destacado.endDate.value,
       imagen_s : destacado.image.value
       // coordinates (latitud en destacado) y lugar_t no usado
     }
