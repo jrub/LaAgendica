@@ -37,9 +37,14 @@ angular.module('starter.controllers', ['ngSanitize'])
   var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
   var destacadosSPARQL = "PREFIX acto: <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#>\
   PREFIX s: <http://schema.org/>\
-  SELECT DISTINCT ?uri ?title ?image ?description ?latitud ?longitud \
-  WHERE { ?uri a acto:Evento.\
-    OPTIONAL{ ?uri rdfs:label ?title}.\
+  SELECT DISTINCT ?id ?title ?startDate ?endDate ?image ?description ?latitud ?longitud \
+  WHERE {\
+    ?uri a s:Event;\
+    dcterms:identifier ?id;\
+    rdfs:label  ?title.\
+    OPTIONAL {?uri s:subEvent ?subEvent.}\
+    OPTIONAL {?subEvent s:startDate ?startDate.}\
+    OPTIONAL {?subEvent s:endDate ?endDate.}\
     OPTIONAL{ ?uri dcterms:description ?description}.\
     OPTIONAL{ ?uri s:image ?image}.\
     OPTIONAL {?uri geo:geometry ?geo.\
