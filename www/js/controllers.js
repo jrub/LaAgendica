@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.controllers', ['ngSanitize'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout) {
   // Form data for the login modal
@@ -31,6 +31,30 @@ angular.module('starter.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+})
+
+.controller('DestacadosCtrl', function($scope, $http, $stateParams, $rootScope) {
+  var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
+  var destacadosSPARQL = "PREFIX acto: <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#>\
+  PREFIX s: <http://schema.org/>\
+  SELECT DISTINCT ?uri ?title ?image ?description ?latitud ?longitud \
+  WHERE { ?uri a acto:Evento.\
+    OPTIONAL{ ?uri rdfs:label ?title}.\
+    OPTIONAL{ ?uri dcterms:description ?description}.\
+    OPTIONAL{ ?uri s:image ?image}.\
+    OPTIONAL {?uri geo:geometry ?geo.\
+    ?geo geo:lat ?latitud.\
+    ?geo geo:long ?longitud}.\
+    ?uri acto:destacada \"true\".\
+  }"
+  $http.get(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
+    .success(function(data, status, headers, config) {
+        console.log(data)
+        $scope.eventos = data.results.bindings
+        $rootScope.eventos = data.results.bindings
+    }).error(function(data, status, headers, config) {
+        console.log('Error:' + data)
+    });
 })
 
 .controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
@@ -83,6 +107,12 @@ angular.module('starter.controllers', [])
 .controller('FavoritosCtrl', function($scope, $localstorage, $rootScope) {
   $scope.eventos = $localstorage.allObjects()
   $rootScope.eventos = $scope.eventos
+})
+
+.controller('DestacadoCtrl', function($scope, $stateParams, $rootScope) {
+  console.log($stateParams)
+  console.log($rootScope.eventos[$stateParams.eventoId]);
+  $scope.evento = $rootScope.eventos[$stateParams.eventoId];
 })
 
 .controller('EventoCtrl', function($scope, $stateParams, $rootScope, $localstorage, $ionicPopup) {

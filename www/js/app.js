@@ -48,6 +48,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   })
 
+  .state('app.destacados', {
+    url: "/destacados",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/destacados.html",
+        controller: 'DestacadosCtrl'
+      }
+    }
+  })
+
   .state('app.eventos', {
     url: "/eventos/:tipo",
     cache: false,
@@ -77,6 +87,16 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       'menuContent': {
         templateUrl: "templates/eventos.html",
         controller: 'FavoritosCtrl'
+      }
+    }
+  })
+
+  .state('app.destacado', {
+    url: "/destacado/:eventoId",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/destacado.html",
+        controller: 'DestacadoCtrl'
       }
     }
   })
