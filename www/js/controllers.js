@@ -129,8 +129,9 @@ angular.module('starter.controllers', ['ngSanitize'])
       title : destacado.title.value,
       fechaInicio_dt : destacado.startDate.value,
       fechaFinal_dt : destacado.endDate.value,
-      imagen_s : destacado.image.value
-      // coordinates (latitud en destacado) y lugar_t no usado
+      imagen_s : destacado.image.value,
+      coordenadas_p_0_coordinate: destacado.latitud.value,
+      coordenadas_p_1_coordinate: destacado.longitud.value
     }
     $localstorage.setObject(destacadofav.id, destacadofav);
     var alertPopup = $ionicPopup.alert({
