@@ -132,9 +132,10 @@ angular.module('starter.controllers', ['ngSanitize'])
 
 })
 
-.controller('MapCtrl', function($scope, $ionicLoading, $compile, $localstorage) {
+.controller('MapCtrl', function($scope, $ionicLoading, $compile, $localstorage, $state, $rootScope) {
 
   var favs = $localstorage.allObjects()
+  $rootScope.eventos = favs;
 
   console.log('entra mapa')
     function initialize() {
@@ -174,11 +175,12 @@ angular.module('starter.controllers', ['ngSanitize'])
         var fav = favs[i]
         console.log(fav)
         var theLatlng = new google.maps.LatLng(fav.coordenadas_p_0_coordinate, fav.coordenadas_p_1_coordinate);
-        
-        
+        fav.index = i
+
+        $scope.fav = fav;
         
         //Marker + infowindow + angularjs compiled ng-click
-        var contentString = "<div><a ng-click='clickTest()'>" + fav.title + "</a><p>'Pulsa para ver detalle'</p></div>";
+        var contentString = "<div><a ng-click='clickTest({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p></a></div>";
         var compiled = $compile(contentString)($scope);
 
         console.log("compiled")
@@ -229,10 +231,9 @@ angular.module('starter.controllers', ['ngSanitize'])
       });
     };
     
-    $scope.clickTest = function() {
-      console.log('click test ')
-      alert('Example of infowindow with ng-click')
-
+    $scope.clickTest = function(obj) {
+      console.log(obj)
+      $state.go('app.single', {eventoId: obj.index});
     };
     
   })
