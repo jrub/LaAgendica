@@ -1,0 +1,37 @@
+<ion-view view-title="Evento Destacado">
+  <ion-content>
+    <div class="list card">
+
+      <div class="item item-avatar">
+        <img src="{{evento.image.value}}">
+        <h2>{{evento.title.value}}</h2>
+        <p>{{evento.fechaInicio_dt}} {{evento.fechaFinal_dt}}</p>
+      </div>
+
+      <div class="item item-body">
+        <img class="evimage" src="{{evento.image.value}}">
+        <pre class="evpre">{{evento.description.value}}</pre>
+        <p>
+          <a href="#" class="subdued">1 Like</a>
+          <a href="#" class="subdued">5 Comments</a>
+        </p>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#">
+          <i class="icon ion-thumbsup"></i>
+          Like
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-chatbox"></i>
+          Comment
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-share"></i>
+          Share
+        </a>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

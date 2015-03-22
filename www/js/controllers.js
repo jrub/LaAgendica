@@ -33,6 +33,30 @@ angular.module('starter.controllers', [])
   };
 })
 
+.controller('DestacadosCtrl', function($scope, $http, $stateParams, $rootScope) {
+  var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
+  var destacadosSPARQL = "PREFIX acto: <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#>\
+  PREFIX s: <http://schema.org/>\
+  SELECT DISTINCT ?uri ?title ?image ?description ?latitud ?longitud \
+  WHERE { ?uri a acto:Evento.\
+    OPTIONAL{ ?uri rdfs:label ?title}.\
+    OPTIONAL{ ?uri dcterms:description ?description}.\
+    OPTIONAL{ ?uri s:image ?image}.\
+    OPTIONAL {?uri geo:geometry ?geo.\
+    ?geo geo:lat ?latitud.\
+    ?geo geo:long ?longitud}.\
+    ?uri acto:destacada \"true\".\
+  }"
+  $http.get(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
+    .success(function(data, status, headers, config) {
+        console.log(data)
+        $scope.eventos = data.results.bindings
+        $rootScope.eventos = data.results.bindings
+    }).error(function(data, status, headers, config) {
+        console.log('Error:' + data)
+    });
+})
+
 .controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
   console.log($stateParams)
   var tipoCap = $stateParams.tipo.charAt(0).toUpperCase() + $stateParams.tipo.slice(1);
@@ -78,7 +102,11 @@ angular.module('starter.controllers', [])
                     console.log('Error:' + data)
                 });
 })
-
+.controller('DestacadoCtrl', function($scope, $stateParams, $rootScope) {
+  console.log($stateParams)
+  console.log($rootScope.eventos[$stateParams.eventoId]);
+  $scope.evento = $rootScope.eventos[$stateParams.eventoId];
+})
 .controller('EventoCtrl', function($scope, $stateParams, $rootScope) {
   console.log($stateParams)
   console.log($rootScope.eventos[$stateParams.eventoId]);
