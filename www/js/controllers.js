@@ -80,6 +80,7 @@ angular.module('starter.controllers', ['ngSanitize'])
                 }).success(function(data, status, headers, config) {
                     console.log(data)
                     $scope.eventos = data.response.docs
+                    $scope.eventos.nav = tipoCap
                     $rootScope.eventos = data.response.docs
                 }).error(function(data, status, headers, config) {
                     console.log('Error:' + data)
@@ -103,6 +104,7 @@ angular.module('starter.controllers', ['ngSanitize'])
                 }).success(function(data, status, headers, config) {
                     console.log(data)
                     $scope.eventos = data.response.docs
+                    $scope.eventos.nav = "Infantil"
                     $rootScope.eventos = data.response.docs
                 }).error(function(data, status, headers, config) {
                     console.log('Error:' + data)
@@ -111,6 +113,7 @@ angular.module('starter.controllers', ['ngSanitize'])
 
 .controller('FavoritosCtrl', function($scope, $localstorage, $rootScope) {
   $scope.eventos = $localstorage.allObjects()
+  $scope.eventos.nav = "Favoritos"
   $rootScope.eventos = $scope.eventos
 })
 
