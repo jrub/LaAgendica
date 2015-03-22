@@ -10,7 +10,7 @@
 
       <div class="item item-body">
         <img class="evimage" src="{{evento.imagen_s}}">
-        <pre class="evpre">{{evento.description}}</pre>
+        <pre class="evpre" ng-bind-html="evento.description"></pre>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
