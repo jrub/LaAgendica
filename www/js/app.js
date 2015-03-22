@@ -50,6 +50,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
 
   .state('app.destacados', {
     url: "/destacados",
+    cache: false,
     views: {
       'menuContent': {
         templateUrl: "templates/destacados.html",
