@@ -112,7 +112,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/eventos/musica');
+  $urlRouterProvider.otherwise('/app/destacados');
 })
 
 .factory('$localstorage', ['$window', function($window) {
