@@ -18,18 +18,21 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item nav-clear menu-close ui-sref="app.favoritos" class="item item-icon-left">
-          <i class="icon ion-star"></i>
-          Favoritos
-        </ion-item>
-        <ion-item nav-clear menu-close ui-sref="app.map" class="item item-icon-left">
-          <i class="icon ion-map"></i>
-          Mapa de Favoritos
-        </ion-item>
-        <ion-item nav-clear menu-close href="#/app/destacados" class="item item-icon-left">
+        <ion-item nav-clear menu-close href="#/app/destacados" class="item item-icon-left assertive">
           <i class="icon ion-arrow-graph-up-right"></i>
           Destacados
         </ion-item>
+        <ion-item nav-clear menu-close ui-sref="app.favoritos" class="item item-icon-left energized">
+          <i class="icon ion-star"></i>
+          Favoritos
+        </ion-item>
+        <ion-item nav-clear menu-close ui-sref="app.map" class="item item-icon-left positive">
+          <i class="icon ion-map"></i>
+          Mapa de Favoritos
+        </ion-item>
+        <div class="item item-divider">
+            <!-- Información -->
+        </div>
         <ion-item nav-clear menu-close href="#/app/eventos/teatro" class="item item-icon-left">
           <i class="icon ion-chatbubbles"></i>
           Teatro
@@ -64,7 +67,7 @@
         </ion-item>
         <div class="item item-divider">
             <!-- Información -->
-          </div>
+        </div>
         <ion-item nav-clear menu-close href="#/app/team" class="item item-icon-left" >
           <i class="icon ion-hammer"></i>
           Equipo de Desarollo
