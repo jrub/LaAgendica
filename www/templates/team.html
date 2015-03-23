@@ -1,0 +1,37 @@
+<ion-view view-title="La Agendica - Equipo">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="miembro in members">
+        <div class="list card">
+
+              <div class="item item-avatar">
+                <img src="{{miembro.imagenPerfil}}">
+                <h2>{{miembro.nombre}}</h2>
+                <p>{{miembro.rolTecnico}}</p>
+              </div>
+
+              <div class="item item-body">
+                <!-- <img class="evimage" src="http://www.rantlifestyle.com/wp-content/uploads/2014/05/happy-smug-sloth.jpg"> -->
+                <pre class="evpre" ng-bind-html="miembro.descripcion"></pre>
+              </div>
+
+              <div class="item tabs tabs-secondary tabs-icon-left">
+                <a class="tab-item" href="{{miembro.twitter}}" target="_blank">
+	              <i class="icon ion-social-twitter-outline"></i>
+	              Twitter
+                </a>
+                <a class="tab-item" href="{{miembro.github}}" target="_blank">
+                  <i class="icon ion-social-octocat"></i>
+                  Github
+                </a>
+                <a class="tab-item" href="{{miembro.web}}" target="_blank">
+                  <i class="icon ion-android-globe"></i>
+                  Web
+                </a>
+              </div>
+
+            </div>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

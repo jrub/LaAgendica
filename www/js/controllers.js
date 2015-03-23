@@ -265,4 +265,37 @@ angular.module('starter.controllers', ['ngSanitize'])
     
   })
 
+  .controller('TeamCtrl', function($scope) {
+    var javi = {
+      nombre:       'Javier Rubio',
+      rolTecnico:   'Android Sloth Developer',
+      descripcion:  'Me apasiona la tecnología y, por suerte, mi pasión es mi trabajo, desde hace ya más de diez años. Aunque últimamente me gano el pan creando apps Android como freelance, me gusta salir continuamente de mi zona de confort. Perfeccionista y en proceso de mejora continua, con ganas de involucrarme en nuevos proyectos en los que prime la atención detalle.',
+      twitter :     'https://twitter.com/jrubr',
+      web:          'http://www.javirubio.net',
+      github:       'https://github.com/jrub',
+      imagenPerfil: 'http://www.gravatar.com/avatar/1328823cb98b75b1f020eabed78b1ff9.png?s=500',
+      imagen:       ''
+    }
+    var tor  = {
+      nombre:       'Héctor Rodríguez',
+      rolTecnico:   'iOS Sloth Developer',
+      descripcion:  'Trabajo como desarrollador freelance de aplicaciones móviles, me encanta aquello a lo que me dedico y disfruto haciéndolo bien. Estoy deseando trabajar contigo y crear algo nuevo que aporte valor para ti y tus usuarios. Sólo necesito unos auriculares, música y mi Macbook para ponerme a desarrollar la App que necesitas.',
+      twitter:      'https://twitter.com/torhector2',
+      web:          'https://www.behance.net/torhector2',
+      github:       'https://github.com/torhector2',
+      imagenPerfil: 'http://www.gravatar.com/avatar/1b951ff3d08e1d7fb7b7f94242855531.png?s=500',
+      imagen:       ''
+    }
+
+    var team = [javi, tor]
+    $scope.members = shuffle(team)
+
+    function shuffle(o){ //v1.0
+    for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+
+};
+
+  })
+
 ;

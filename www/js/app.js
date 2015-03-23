@@ -121,6 +121,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'EventoCtrl'
       }
     }
+  })
+
+  .state('app.team', {
+    url: "/team",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/team.html",
+        controller: 'TeamCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/destacados');
