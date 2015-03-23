@@ -132,6 +132,17 @@ angular.module('starter', ['ionic', 'starter.controllers'])
         controller: 'TeamCtrl'
       }
     }
+  })
+
+  .state('app.about', {
+    url: "/about",
+    cache: false,
+    views: {
+      'menuContent': {
+        templateUrl: "templates/about.html",
+        controller: 'AboutCtrl'
+      }
+    }
   });
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/destacados');
