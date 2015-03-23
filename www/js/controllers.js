@@ -218,7 +218,7 @@ angular.module('starter.controllers', ['ngSanitize'])
         $scope.fav = fav;
         
         //Marker + infowindow + angularjs compiled ng-click
-        var contentString = "<div><a ng-click='clickTest({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p></a></div>";
+        var contentString = "<div><a ng-click='clickTest({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p><img src='"+ fav.imagen_s + "' width='100' height='60' class='evimage'/></a></div>";
         var compiled = $compile(contentString)($scope);
 
         console.log("compiled")
