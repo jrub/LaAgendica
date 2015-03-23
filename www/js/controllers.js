@@ -117,7 +117,11 @@ angular.module('starter.controllers', ['ngSanitize'])
   $scope.textoNoContent = 'Actualmente no tienes favoritos guardados. Anímate a crear uno.'
 })
 
-.controller('DestacadoCtrl', function($scope, $stateParams, $rootScope, $localstorage, $ionicPopup) {
+.controller('DestacadoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup) {
+  if (!$rootScope.eventos) {
+    $state.go('app.destacados')
+    return
+  }
   console.log($stateParams)
   console.log($rootScope.eventos[$stateParams.eventoId]);
   $scope.evento = $rootScope.eventos[$stateParams.eventoId];
@@ -142,7 +146,11 @@ angular.module('starter.controllers', ['ngSanitize'])
 
 })
 
-.controller('EventoCtrl', function($scope, $stateParams, $rootScope, $localstorage, $ionicPopup) {
+.controller('EventoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup) {
+  if (!$rootScope.eventos) {
+    $state.go('app.destacados')
+    return
+  }
   $scope.evento = $rootScope.eventos[$stateParams.eventoId];
 
   $scope.marcarFavorito = function(evento) {
