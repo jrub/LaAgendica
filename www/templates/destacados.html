@@ -1,11 +1,16 @@
 <ion-view view-title="Destacados de La Agendica">
   <ion-content>
-    <ion-list>
+    <ion-list ng-show="mostrarEventos">
       <ion-item class="item-thumbnail-left" ng-repeat="evento in eventos" href="#/app/destacado/{{$index}}">
         <img src="{{evento.image.value}}">
         <h2>{{evento.title.value}}</h2>
         <p>Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</p>
       </ion-item>
     </ion-list>
+    <div class="card" ng-hide="mostrarEventos">
+      <div class="item item-text-wrap" style="text-align:center">
+        <i class="icon ion-sad-outline"></i> {{textoNoContent}} <i class="icon ion-sad-outline"></i>
+      </div>
+    </div>
   </ion-content>
 </ion-view>

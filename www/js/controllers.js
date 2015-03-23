@@ -52,11 +52,16 @@ angular.module('starter.controllers', ['ngSanitize'])
     ?geo geo:long ?longitud}.\
     ?uri acto:destacada \"true\".\
   }"
+
+  $scope.mostrarEventos = true //hasta que no lo sepamos desde el servidor
+
   $http.get(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
     .success(function(data, status, headers, config) {
         console.log(data)
         $scope.eventos = data.results.bindings
         $rootScope.eventos = data.results.bindings
+        $scope.mostrarEventos = ($scope.eventos.length > 0)
+        $scope.textoNoContent = 'Actualmente no existen eventos destacados'
     }).error(function(data, status, headers, config) {
         console.log('Error:' + data)
     });
@@ -65,6 +70,7 @@ angular.module('starter.controllers', ['ngSanitize'])
 .controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
   console.log($stateParams)
   var tipoCap = $stateParams.tipo.charAt(0).toUpperCase() + $stateParams.tipo.slice(1);
+  $scope.mostrarEventos = true //hasta que no lo sepamos desde el servidor
   $http({
                     method: 'JSONP',
                     url: 'http://www.zaragoza.es/buscador/select',
@@ -82,6 +88,9 @@ angular.module('starter.controllers', ['ngSanitize'])
                     $scope.eventos = data.response.docs
                     $scope.eventos.nav = tipoCap
                     $rootScope.eventos = data.response.docs
+                    $scope.mostrarEventos = ($scope.eventos.length > 0)
+                    $scope.textoNoContent = 'Actualmente no existen eventos para esta sección'
+
                 }).error(function(data, status, headers, config) {
                     console.log('Error:' + data)
                 });
@@ -115,6 +124,8 @@ angular.module('starter.controllers', ['ngSanitize'])
   $scope.eventos = $localstorage.allObjects()
   $scope.eventos.nav = "Favoritos"
   $rootScope.eventos = $scope.eventos
+  $scope.mostrarEventos = ($scope.eventos.length > 0)
+  $scope.textoNoContent = 'Actualmente no tienes favoritos guardados. Anímate a crear uno.'
 })
 
 .controller('DestacadoCtrl', function($scope, $stateParams, $rootScope, $localstorage, $ionicPopup) {
