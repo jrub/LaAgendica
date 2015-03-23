@@ -98,6 +98,7 @@ angular.module('starter.controllers', ['ngSanitize'])
 })
 
 .controller('InfantilCtrl', function($scope, $http, $rootScope) {
+  $scope.mostrarEventos = true //hasta que no lo sepamos desde el servidor
   $http({
                     method: 'JSONP',
                     url: 'http://www.zaragoza.es/buscador/select',
@@ -115,6 +116,7 @@ angular.module('starter.controllers', ['ngSanitize'])
                     $scope.eventos = data.response.docs
                     $scope.eventos.nav = "Infantil"
                     $rootScope.eventos = data.response.docs
+                    $scope.mostrarEventos = ($scope.eventos.length > 0)
                 }).error(function(data, status, headers, config) {
                     console.log('Error:' + data)
                 });
