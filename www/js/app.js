@@ -86,7 +86,7 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     cache: false,
     views: {
       'menuContent': {
-        templateUrl: "templates/eventos.html",
+        templateUrl: "templates/favoritos.html",
         controller: 'FavoritosCtrl'
       }
     }
