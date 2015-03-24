@@ -14,9 +14,9 @@
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
-        <a class="tab-item" ng-click="gestionarFavorito({{evento}})" >
+        <a class="tab-item" ng-class="{energized: evento.fav}" ng-click="gestionarFavorito({{evento}})" >
           <i class="icon ion-ios-star-outline"></i>
-            Marcar Favorito
+            Favorito
         </a>
         <a class="tab-item" href="https://twitter.com/intent/tweet?text=Echa un vistazo a este evento que encontré en @LaAgendica {{evento.uri.value}}&hashtags=Zaragoza,LaAgendica">
           <i class="icon ion-share"></i>

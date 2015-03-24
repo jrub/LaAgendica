@@ -155,6 +155,7 @@ angular.module('starter.controllers', ['ngSanitize'])
         title: 'Favoritos',
         template: 'Favorito guardado con éxito'
       });
+      $scope.evento.fav = true
     }
   }
 
@@ -163,6 +164,9 @@ angular.module('starter.controllers', ['ngSanitize'])
     return fav.id === eventoId
   }
 
+  if ($scope.isFavorito($scope.evento.id.value)) {
+    $scope.evento.fav = true // para pintar el boton fav activo
+  }
 })
 
 .controller('EventoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory) {
@@ -191,6 +195,7 @@ angular.module('starter.controllers', ['ngSanitize'])
         title: 'Favoritos',
         template: 'Favorito guardado con éxito'
       });
+      $scope.evento.fav = true
     }
   }
 
@@ -199,6 +204,9 @@ angular.module('starter.controllers', ['ngSanitize'])
     return fav.id === eventoId
   }
 
+  if ($scope.isFavorito($scope.evento.id)) {
+    $scope.evento.fav = true // para pintar el boton fav activo
+  }
 })
 
 .controller('MapCtrl', function($scope, $ionicLoading, $compile, $localstorage, $state, $rootScope) {
