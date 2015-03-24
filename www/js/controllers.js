@@ -130,7 +130,7 @@ angular.module('starter.controllers', ['ngSanitize'])
   
   $scope.evento = $rootScope.eventos[$stateParams.eventoId];
 
-  $scope.marcarFavorito = function(destacado) {
+  $scope.gestionarFavorito = function(destacado) {
     var destacadofav = {
       id : destacado.id.value,
       description : destacado.description.value,
@@ -141,11 +141,26 @@ angular.module('starter.controllers', ['ngSanitize'])
       coordenadas_p_0_coordinate: destacado.latitud.value,
       coordenadas_p_1_coordinate: destacado.longitud.value
     }
-    $localstorage.setObject(destacadofav.id, destacadofav);
-    var alertPopup = $ionicPopup.alert({
-      title: 'Favoritos',
-      template: 'Favorito guardado con éxito'
-    });
+    if ($scope.isFavorito(destacadofav.id)) {
+      $localstorage.removeItem(destacadofav.id)
+      var alertPopup = $ionicPopup.alert({
+        title: 'Favoritos',
+        template: 'Favorito borrado con éxito'
+      });
+      $ionicHistory.goBack()
+      return;
+    } else {
+      $localstorage.setObject(destacadofav.id, destacadofav);
+      var alertPopup = $ionicPopup.alert({
+        title: 'Favoritos',
+        template: 'Favorito guardado con éxito'
+      });
+    }
+  }
+
+  $scope.isFavorito = function(eventoId) {
+    var fav = $localstorage.getObject(eventoId)
+    return fav.id === eventoId
   }
 
 })
@@ -161,16 +176,27 @@ angular.module('starter.controllers', ['ngSanitize'])
   }
   $scope.evento = $rootScope.eventos[$stateParams.eventoId];
 
-  $scope.marcarFavorito = function(evento) {
-    $localstorage.setObject(evento.id, evento);
-    var alertPopup = $ionicPopup.alert({
-      title: 'Favoritos',
-      template: 'Favorito guardado con éxito'
-    });
+  $scope.gestionarFavorito = function(evento) {
+    if ($scope.isFavorito(evento.id)) {
+      $localstorage.removeItem(evento.id)
+      var alertPopup = $ionicPopup.alert({
+        title: 'Favoritos',
+        template: 'Favorito borrado con éxito'
+      });
+      $ionicHistory.goBack()
+      return;
+    } else {
+      $localstorage.setObject(evento.id, evento);
+      var alertPopup = $ionicPopup.alert({
+        title: 'Favoritos',
+        template: 'Favorito guardado con éxito'
+      });
+    }
   }
 
   $scope.isFavorito = function(eventoId) {
-    return $localstorage.getObject(eventoId)
+    var fav = $localstorage.getObject(eventoId)
+    return fav.id === eventoId
   }
 
 })

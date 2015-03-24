@@ -176,6 +176,9 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       }
       return archive;
     },
+    removeItem: function(key) {
+      $window.localStorage.removeItem(key)
+    },
     clearAll: function() {
       $window.localStorage.clear()
     }
