@@ -285,7 +285,7 @@ angular.module('starter.controllers', ['ngSanitize'])
     var javi = {
       nombre:       'Javier Rubio',
       rolTecnico:   'Android Sloth Developer',
-      descripcion:  'Me apasiona la tecnología y, por suerte, mi pasión es mi trabajo, desde hace ya más de diez años. Aunque últimamente me gano el pan creando apps Android como freelance, me gusta salir continuamente de mi zona de confort. Perfeccionista y en proceso de mejora continua, con ganas de involucrarme en nuevos proyectos en los que prime la atención detalle.',
+      descripcion:  'Me apasiona la tecnología y, por suerte, mi pasión es mi trabajo, desde hace ya más de diez años. Aunque últimamente me gano el pan creando apps Android como freelance, me gusta salir continuamente de mi zona de confort. Perfeccionista y en proceso de mejora continua, con ganas de involucrarme en nuevos proyectos en los que prime la atención al detalle.',
       twitter :     'https://twitter.com/jrubr',
       web:          'http://www.javirubio.net',
       github:       'https://github.com/jrub',
