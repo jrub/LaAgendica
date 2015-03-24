@@ -44,18 +44,18 @@ angular.module('starter.controllers', ['ngSanitize'])
 
   $http.get(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
     .success(function(data, status, headers, config) {
-        console.log(data)
+        
         $scope.eventos = data.results.bindings
         $rootScope.eventos = data.results.bindings
         $scope.mostrarEventos = ($scope.eventos.length > 0)
         $scope.textoNoContent = 'Actualmente no existen eventos destacados'
     }).error(function(data, status, headers, config) {
-        console.log('Error:' + data)
+        
     });
 })
 
 .controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
-  console.log($stateParams)
+  
   var tipoCap = $stateParams.tipo.charAt(0).toUpperCase() + $stateParams.tipo.slice(1);
   $scope.mostrarEventos = true //hasta que no lo sepamos desde el servidor
   $http({
@@ -71,7 +71,7 @@ angular.module('starter.controllers', ['ngSanitize'])
                         'fq': 'temas_smultiple:(\"' + $stateParams.tipo + '\"),(\"' + tipoCap + '\")'
                     }
                 }).success(function(data, status, headers, config) {
-                    console.log(data)
+                    
                     $scope.eventos = data.response.docs
                     $scope.eventos.nav = tipoCap
                     $rootScope.eventos = data.response.docs
@@ -79,7 +79,7 @@ angular.module('starter.controllers', ['ngSanitize'])
                     $scope.textoNoContent = 'Actualmente no existen eventos para esta sección'
 
                 }).error(function(data, status, headers, config) {
-                    console.log('Error:' + data)
+                    
                 });
 
 })
@@ -99,13 +99,13 @@ angular.module('starter.controllers', ['ngSanitize'])
                         'fq': 'dirigidoa_smultiple:\"Infancia\"'
                     }
                 }).success(function(data, status, headers, config) {
-                    console.log(data)
+                    
                     $scope.eventos = data.response.docs
                     $scope.eventos.nav = "Infantil"
                     $rootScope.eventos = data.response.docs
                     $scope.mostrarEventos = ($scope.eventos.length > 0)
                 }).error(function(data, status, headers, config) {
-                    console.log('Error:' + data)
+                    
                 });
 })
 
@@ -126,8 +126,8 @@ angular.module('starter.controllers', ['ngSanitize'])
     });
     return
   }
-  console.log($stateParams)
-  console.log($rootScope.eventos[$stateParams.eventoId]);
+  
+  
   $scope.evento = $rootScope.eventos[$stateParams.eventoId];
 
   $scope.marcarFavorito = function(destacado) {
@@ -180,18 +180,18 @@ angular.module('starter.controllers', ['ngSanitize'])
   var favs = $localstorage.allObjects()
   $rootScope.eventos = favs;
 
-  console.log('entra mapa')
+  
     function initialize() {
-      console.log('inicializa mapa')
+      
 
       var map;
       var myInfoWindows = [];
 
       function getMyInfoWindows(i) {
-        console.log('entro en getMuyInfoWindows')
-        console.log(myInfoWindows)
-        console.log('i es ' + i)
-        console.log(myInfoWindows[i])
+        
+        
+        
+        
         return myInfoWindows[i]
       }
 
@@ -216,7 +216,7 @@ angular.module('starter.controllers', ['ngSanitize'])
       
       for (var i = 0; i < favs.length; i++) {
         var fav = favs[i]
-        console.log(fav)
+        
         var theLatlng = new google.maps.LatLng(fav.coordenadas_p_0_coordinate, fav.coordenadas_p_1_coordinate);
         fav.index = i
 
@@ -226,14 +226,14 @@ angular.module('starter.controllers', ['ngSanitize'])
         var contentString = "<div><a ng-click='clickTest({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p><img src='"+ fav.imagen_s + "' width='100' height='60' class='evimage'/></a></div>";
         var compiled = $compile(contentString)($scope);
 
-        console.log("compiled")
-        console.log(compiled)
+        
+        
         var infowindow = new google.maps.InfoWindow({
           content: compiled[0]
         });
         myInfoWindows.push(infowindow)
-        console.log('infowindow')
-        console.log(infowindow)
+        
+        
 
         var marker = new google.maps.Marker({
           position: theLatlng,
@@ -256,7 +256,7 @@ angular.module('starter.controllers', ['ngSanitize'])
     initialize()
     
     $scope.centerOnMe = function() {
-      console.log('centra mapa en ti')
+      
       if(!$scope.map) {
         return;
       }
@@ -275,7 +275,7 @@ angular.module('starter.controllers', ['ngSanitize'])
     };
     
     $scope.clickTest = function(obj) {
-      console.log(obj)
+      
       $state.go('app.single', {eventoId: obj.index});
     };
     

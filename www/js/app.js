@@ -170,8 +170,8 @@ angular.module('starter', ['ionic', 'starter.controllers'])
       for (; i < keys.length; i++) {
         var key = keys[i]
         var fav = this.getObject(key)
-        console.log('El fav')
-        console.log(fav.title)
+        
+        
         archive.push(fav);
       }
       return archive;
