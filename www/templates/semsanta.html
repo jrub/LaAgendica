@@ -1,0 +1,9 @@
+<ion-view view-title="Semana Santa en Zaragoza">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-text-wrap" ng-repeat="dia in dias" href="#/app/semana-santa/{{dia}}">
+        {{dia.replace("-", " ").replace("-", " ")}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

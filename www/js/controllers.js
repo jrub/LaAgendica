@@ -54,6 +54,15 @@ angular.module('starter.controllers', ['ngSanitize'])
     });
 })
 
+.controller('SemanaSantaDiaCtrl', function($scope, $http, $stateParams, $rootScope) {
+  $scope.diasanto = $stateParams.dia.replace("-", " ").replace("-", " ");
+  $http.get('semana-santa-2015.json').success(function(data) {
+    $scope.procesiones = data.result;
+  }).error(function(data, status, headers, config) {
+    console.log("NO JSON");
+  });
+})
+
 .controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
   
   var tipoCap = $stateParams.tipo.charAt(0).toUpperCase() + $stateParams.tipo.slice(1);

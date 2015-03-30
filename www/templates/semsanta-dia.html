@@ -1,0 +1,30 @@
+<ion-view view-title="{{diasanto}}">
+  <ion-content>
+    <div class="list card" ng-repeat="procesion in procesiones | filter:{dia:diasanto}">
+
+      <div class="item item-avatar item-text-wrap">
+        <img src="{{procesion.image}}"></img>
+        <h2>{{procesion.hora}} {{procesion.title}}</h2>
+        <p>{{procesion.cofradia}}</p>
+      </div>
+
+      <div class="item item-body">
+        <img class="evimage" src="{{procesion.image}}">
+        <pre class="evpre">Salida: {{procesion.salida}}</pre>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" >
+            <i class="icon ion-map"></i>
+            Abrir mapa
+        </a>
+        <a class="tab-item" href="https://twitter.com/intent/tweet?text=Echa un vistazo a este evento que encontré en @LaAgendica {{evento.uri}}&hashtags=Zaragoza,LaAgendica">
+          <i class="icon ion-share"></i>
+          Twittear
+        </a>
+      </div>
+
+    </div>
+    <br/><br/>
+  </ion-content>
+</ion-view>

@@ -30,13 +30,26 @@ angular.module('starter', ['ionic', 'starter.controllers'])
     controller: 'AppCtrl'
   })
 
-  .state('app.search', {
-    url: "/search",
+  .state('app.semana-santa', {
+    url: "/semana-santa",
     views: {
       'menuContent': {
-        templateUrl: "templates/search.html"
+        templateUrl: "templates/semsanta.html",
+        controller: function($scope) {
+          $scope.dias = ["Domingo-de-Ramos", "Lunes-Santo", "Martes-Santo", "Miércoles-Santo", "Jueves-Santo", "Viernes-Santo", "Sábado-Santo", "Domingo-de-Resurrección"];
+        }
       }
     }
+  })
+
+  .state('app.semana-santa-dia', {
+    url: "/semana-santa/:dia",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/semsanta-dia.html",
+        controller: 'SemanaSantaDiaCtrl'
+        }
+      }
   })
 
   .state('app.browse', {
