@@ -1,0 +1,13 @@
+<ion-view title="Recorrido">
+
+  <ion-nav-buttons side="right">
+    <button ng-click="locate();" class="button button-icon icon ion-pinpoint"></button>
+  </ion-nav-buttons>
+
+  <ion-content data-tap-disabled="true">
+
+    <leaflet defaults="map.defaults" center="map.center" markers="map.markers" geojson="geojson"></leaflet>
+
+  </ion-content>
+
+</ion-view>

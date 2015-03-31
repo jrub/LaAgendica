@@ -54,13 +54,56 @@ angular.module('starter.controllers', ['ngSanitize'])
     });
 })
 
-.controller('SemanaSantaDiaCtrl', function($scope, $http, $stateParams, $rootScope) {
+.controller('SemanaSantaDiaCtrl', function($scope, $http, $stateParams, $state) {
   $scope.diasanto = $stateParams.dia.replace("-", " ").replace("-", " ");
   $http.get('semana-santa-2015.json').success(function(data) {
     $scope.procesiones = data.result;
   }).error(function(data, status, headers, config) {
     console.log("NO JSON");
   });
+  $scope.goMap = function(procesion) {
+    $state.go('app.semana-santa-map', {id: procesion.id});
+  };
+})
+
+.controller('SemanaSantaMapCtrl', function($scope, $http, $stateParams, leafletData) {
+
+  $scope.map = {
+          defaults: {
+            tileLayer: 'http://{s}.tile.osm.org/{z}/{x}/{y}.png',
+            maxZoom: 18,
+            zoomControlPosition: 'bottomleft'
+          },
+          center: {
+            lat: 41.6484815,
+            lng: -0.8904359,
+            zoom: 14
+          },
+          markers : {},
+          events: {
+            map: {
+              enable: ['context'],
+              logic: 'emit'
+            }
+          }
+        };
+
+        $http({
+            method: 'GET',
+            url: "http://www.zaragoza.es/api/recurso/cultura-ocio/procesion/recorrido/" + $stateParams.id + ".json?srsname=wgs84"
+          }).success(function(data, status) {
+            angular.extend($scope, {
+                geojson: {
+                    data: data
+                }
+            });
+            // centrar el mapa en el recorrido
+            leafletData.getMap().then(function(map) {
+              leafletData.getGeoJSON().then(function(geoJSON) {
+                map.fitBounds(geoJSON.getBounds());
+              });
+            });
+        });
 })
 
 .controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
