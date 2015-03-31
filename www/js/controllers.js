@@ -104,6 +104,28 @@ angular.module('starter.controllers', ['ngSanitize'])
               });
             });
         });
+
+        $scope.locate = function() {
+          navigator.geolocation
+            .getCurrentPosition(function (position) {
+              $scope.map.center.lat  = position.coords.latitude;
+              $scope.map.center.lng = position.coords.longitude;
+              $scope.map.center.zoom = 15;
+
+              $scope.map.markers.now = {
+                lat:position.coords.latitude,
+                lng:position.coords.longitude,
+                message: "Estás aquí",
+                focus: true,
+                draggable: false
+              };
+
+            }, function(err) {
+              // error
+              console.log("Location error!");
+              console.log(err);
+            });
+      };
 })
 
 .controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
