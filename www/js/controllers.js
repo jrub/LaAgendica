@@ -54,7 +54,7 @@ angular.module('starter.controllers', ['ngSanitize'])
     });
 })
 
-.controller('SemanaSantaDiaCtrl', function($scope, $http, $stateParams, $state) {
+.controller('SemanaSantaDiaCtrl', function($scope, $http, $stateParams, $state, $location) {
   $scope.diasanto = $stateParams.dia.replace("-", " ").replace("-", " ");
   $http.get('semana-santa-2015.json').success(function(data) {
     $scope.procesiones = data.result;
@@ -64,6 +64,7 @@ angular.module('starter.controllers', ['ngSanitize'])
   $scope.goMap = function(procesion) {
     $state.go('app.semana-santa-map', {id: procesion.id});
   };
+  $scope.url = $location.absUrl().replace("#", "%23")
 })
 
 .controller('SemanaSantaMapCtrl', function($scope, $http, $stateParams, leafletData) {
