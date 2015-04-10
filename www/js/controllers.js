@@ -362,7 +362,7 @@ angular.module('starter.controllers', ['ngSanitize'])
       }
 
       $scope.loading = $ionicLoading.show({
-        content: 'Getting current location...',
+        content: 'Buscándote...',
         showBackdrop: false
       });
 
@@ -370,7 +370,7 @@ angular.module('starter.controllers', ['ngSanitize'])
         $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
         $scope.loading.hide();
       }, function(error) {
-        alert('Unable to get location: ' + error.message);
+        alert('Lo sentimos, no hemos podido encontrarte.');
       });
     };
     

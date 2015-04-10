@@ -1,8 +1,11 @@
-<ion-view view-title="Mapa de tus Favoritos">
+<ion-view view-title="Mapa de Eventos Favoritos">
+
+  <ion-nav-buttons side="right">
+    <button ng-click="centerOnMe()" class="button button-icon icon ion-pinpoint"></button>
+  </ion-nav-buttons>
+
   <ion-content>
     <div id="map" data-tap-disabled="true"></div>
   </ion-content>
-  <ion-footer-bar>
-      <a ng-click="centerOnMe()" class="button button-icon icon ion-navigate">Find Me</a>
-    </ion-footer-bar>
+
 </ion-view>
