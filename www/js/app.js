@@ -68,15 +68,6 @@ angular.module('starter', ['ionic', 'leaflet-directive', 'starter.controllers'])
       }
   })
 
-  .state('app.browse', {
-    url: "/browse",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/browse.html"
-      }
-    }
-  })
-
   .state('app.destacados', {
     url: "/destacados",
     cache: false,
