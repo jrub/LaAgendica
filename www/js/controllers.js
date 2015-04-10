@@ -218,12 +218,8 @@ angular.module('starter.controllers', ['ngSanitize'])
     }
     if ($scope.isFavorito(destacadofav.id)) {
       $localstorage.removeItem(destacadofav.id)
-      var alertPopup = $ionicPopup.alert({
-        title: 'Favoritos',
-        template: 'Favorito borrado con éxito'
-      });
-      $ionicHistory.goBack()
-      return;
+      $scope.evento.fav = false
+      return
     } else {
       $localstorage.setObject(destacadofav.id, destacadofav);
       $scope.evento.fav = true
@@ -254,11 +250,14 @@ angular.module('starter.controllers', ['ngSanitize'])
   $scope.gestionarFavorito = function(evento) {
     if ($scope.isFavorito(evento.id)) {
       $localstorage.removeItem(evento.id)
-      var alertPopup = $ionicPopup.alert({
-        title: 'Favoritos',
-        template: 'Favorito borrado con éxito'
-      });
-      $ionicHistory.goBack()
+      $scope.evento.fav = false
+      if ($ionicHistory.backView().stateName == "app.favoritos") {
+        var alertPopup = $ionicPopup.alert({
+          title: 'Favoritos',
+          template: 'Favorito borrado con éxito'
+        });
+        $ionicHistory.goBack()
+      }
       return;
     } else {
       $localstorage.setObject(evento.id, evento);
