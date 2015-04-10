@@ -323,7 +323,7 @@ angular.module('starter.controllers', ['ngSanitize'])
         $scope.fav = fav;
         
         //Marker + infowindow + angularjs compiled ng-click
-        var contentString = "<div><a ng-click='clickTest({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p><img src='"+ fav.imagen_s + "' width='100' height='60' class='evimage'/></a></div>";
+        var contentString = "<div><a ng-click='clickMapInfoWindow({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p><img src='"+ fav.imagen_s + "' width='100' height='60' class='evimage'/></a></div>";
         var compiled = $compile(contentString)($scope);
 
         
@@ -374,7 +374,7 @@ angular.module('starter.controllers', ['ngSanitize'])
       });
     };
     
-    $scope.clickTest = function(obj) {
+    $scope.clickMapInfoWindow = function(obj) {
       
       $state.go('app.single', {eventoId: obj.index});
     };
