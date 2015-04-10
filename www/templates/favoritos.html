@@ -7,10 +7,11 @@
         <p>Del {{evento.fechaInicio_dt | date:'dd-MMM-yy'}} al {{evento.fechaFinal_dt | date:'dd-MMM-yy'}}</p>
       </ion-item>
     </ion-list>
-    <div class="card" ng-hide="mostrarEventos">
-      <div class="item item-text-wrap" style="text-align:center">
-        <i class="icon ion-sad-outline"></i> {{textoNoContent}} <i class="icon ion-sad-outline"></i>
-      </div>
+    <div class="list card" ng-hide="mostrarEventos" style="text-align:center">
+      <a href="#" class="item item-icon-left item-text-wrap">
+        <i class="icon ion-android-sad"></i>
+        <pre class="evpre">{{textoNoContent}}</pre>
+      </a>
     </div>
   </ion-content>
 </ion-view>

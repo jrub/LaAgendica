@@ -189,7 +189,7 @@ angular.module('starter.controllers', ['ngSanitize'])
   $scope.eventos.nav = "Favoritos"
   $rootScope.eventos = $scope.eventos
   $scope.mostrarEventos = ($scope.eventos.length > 0)
-  $scope.textoNoContent = 'Actualmente no tienes favoritos guardados. Anímate a crear uno.'
+  $scope.textoNoContent = '¡Aún no tienes favoritos! \n\n Anímate a guardar tus eventos favoritos, y así podrás verlos en el mapa de un vistazo.'
 })
 
 .controller('DestacadoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory) {
