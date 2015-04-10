@@ -8,8 +8,8 @@ angular.module('starter.controllers', ['ngSanitize'])
       $state.go('app.map');
     } else {
       var alertPopup = $ionicPopup.alert({
-        title: 'Mapa de Favoritos',
-        template: 'No tienes favoritos, te animamos a que guardes algunos para visualizarlos en el mapa.'
+        title: '¡Aún no tienes favoritos!',
+        template: '<pre class="evpre" style="text-align:center">Anímate a guardar tus eventos favoritos, y así podrás verlos en el mapa de un vistazo.</pre>'
       });
     }
   };
