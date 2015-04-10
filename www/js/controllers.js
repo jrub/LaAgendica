@@ -226,10 +226,6 @@ angular.module('starter.controllers', ['ngSanitize'])
       return;
     } else {
       $localstorage.setObject(destacadofav.id, destacadofav);
-      var alertPopup = $ionicPopup.alert({
-        title: 'Favoritos',
-        template: 'Favorito guardado con éxito'
-      });
       $scope.evento.fav = true
     }
   }
@@ -266,10 +262,6 @@ angular.module('starter.controllers', ['ngSanitize'])
       return;
     } else {
       $localstorage.setObject(evento.id, evento);
-      var alertPopup = $ionicPopup.alert({
-        title: 'Favoritos',
-        template: 'Favorito guardado con éxito'
-      });
       $scope.evento.fav = true
     }
   }
