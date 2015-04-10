@@ -2,7 +2,6 @@ angular.module('starter.controllers', ['ngSanitize'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $localstorage, $state, $ionicPopup) {
 
-  // Open the login modal
   $scope.openMap = function() {
     if (hasToOpenMap()) {
       $state.go('app.map');
@@ -122,7 +121,6 @@ angular.module('starter.controllers', ['ngSanitize'])
               };
 
             }, function(err) {
-              // error
               console.log("Location error!");
               console.log(err);
             });
@@ -202,7 +200,6 @@ angular.module('starter.controllers', ['ngSanitize'])
     return
   }
   
-  
   $scope.evento = $rootScope.eventos[$stateParams.eventoId];
 
   $scope.gestionarFavorito = function(destacado) {
@@ -280,18 +277,11 @@ angular.module('starter.controllers', ['ngSanitize'])
   var favs = $localstorage.allObjects()
   $rootScope.eventos = favs;
 
-  
     function initialize() {
-      
-
       var map;
       var myInfoWindows = [];
 
       function getMyInfoWindows(i) {
-        
-        
-        
-        
         return myInfoWindows[i]
       }
 
@@ -321,19 +311,14 @@ angular.module('starter.controllers', ['ngSanitize'])
         fav.index = i
 
         $scope.fav = fav;
-        
-        //Marker + infowindow + angularjs compiled ng-click
+
         var contentString = "<div><a ng-click='clickMapInfoWindow({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p><img src='"+ fav.imagen_s + "' width='100' height='60' class='evimage'/></a></div>";
         var compiled = $compile(contentString)($scope);
 
-        
-        
         var infowindow = new google.maps.InfoWindow({
           content: compiled[0]
         });
         myInfoWindows.push(infowindow)
-        
-        
 
         var marker = new google.maps.Marker({
           position: theLatlng,
@@ -342,12 +327,6 @@ angular.module('starter.controllers', ['ngSanitize'])
         });
 
         addListenerGoogleMaps(i, marker)
-
-        // google.maps.event.addListener(marker, 'click', function() {
-        //   //infowindow.open(map,marker);
-        //   var myInfoWindow = getMyInfoWindows(i);
-        //   myInfoWindow.open(map, marker)
-        // });
       }
 
       $scope.map = map;
