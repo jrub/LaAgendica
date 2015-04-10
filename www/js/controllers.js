@@ -363,7 +363,7 @@ angular.module('starter.controllers', ['ngSanitize'])
   .controller('TeamCtrl', function($scope) {
     var javi = {
       nombre:       'Javier Rubio',
-      rolTecnico:   'Android Sloth Developer',
+      rolTecnico:   'Android Developer',
       descripcion:  'Me apasiona la tecnología y, por suerte, mi pasión es mi trabajo, desde hace ya más de diez años. Aunque últimamente me gano el pan creando apps Android como freelance, me gusta salir continuamente de mi zona de confort. Perfeccionista y en proceso de mejora continua, con ganas de involucrarme en nuevos proyectos en los que prime la atención al detalle.',
       twitter :     'https://twitter.com/jrubr',
       web:          'http://www.javirubio.net',
@@ -373,7 +373,7 @@ angular.module('starter.controllers', ['ngSanitize'])
     }
     var tor  = {
       nombre:       'Héctor Rodríguez',
-      rolTecnico:   'iOS Sloth Developer',
+      rolTecnico:   'iOS Developer',
       descripcion:  'Trabajo como desarrollador freelance de aplicaciones móviles, me encanta aquello a lo que me dedico y disfruto haciéndolo bien. Estoy deseando trabajar contigo y crear algo nuevo que aporte valor para ti y tus usuarios. Sólo necesito unos auriculares, música y mi Macbook para ponerme a desarrollar la App que necesitas.',
       twitter:      'https://twitter.com/torhector2',
       web:          'https://www.behance.net/torhector2',
