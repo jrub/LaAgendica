@@ -40,14 +40,14 @@ angular.module('starter.controllers', ['ngSanitize'])
     ?uri acto:destacada \"true\".\
   }"
 
-  $scope.mostrarEventos = true //hasta que no lo sepamos desde el servidor
+  $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
 
   $http.get(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
     .success(function(data, status, headers, config) {
         
         $scope.eventos = data.results.bindings
         $rootScope.eventos = data.results.bindings
-        $scope.mostrarEventos = ($scope.eventos.length > 0)
+        $scope.hayEventos = ($scope.eventos.length > 0)
         $scope.textoNoContent = 'Actualmente no existen eventos destacados'
     }).error(function(data, status, headers, config) {
         
@@ -132,7 +132,7 @@ angular.module('starter.controllers', ['ngSanitize'])
 .controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
   
   var tipoCap = $stateParams.tipo.charAt(0).toUpperCase() + $stateParams.tipo.slice(1);
-  $scope.mostrarEventos = true //hasta que no lo sepamos desde el servidor
+  $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
   $http({
                     method: 'JSONP',
                     url: 'http://www.zaragoza.es/buscador/select',
@@ -150,7 +150,7 @@ angular.module('starter.controllers', ['ngSanitize'])
                     $scope.eventos = data.response.docs
                     $scope.eventos.nav = tipoCap
                     $rootScope.eventos = data.response.docs
-                    $scope.mostrarEventos = ($scope.eventos.length > 0)
+                    $scope.hayEventos = ($scope.eventos.length > 0)
                     $scope.textoNoContent = 'Actualmente no existen eventos para esta sección'
 
                 }).error(function(data, status, headers, config) {
@@ -160,7 +160,7 @@ angular.module('starter.controllers', ['ngSanitize'])
 })
 
 .controller('InfantilCtrl', function($scope, $http, $rootScope) {
-  $scope.mostrarEventos = true //hasta que no lo sepamos desde el servidor
+  $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
   $http({
                     method: 'JSONP',
                     url: 'http://www.zaragoza.es/buscador/select',
@@ -178,7 +178,7 @@ angular.module('starter.controllers', ['ngSanitize'])
                     $scope.eventos = data.response.docs
                     $scope.eventos.nav = "Infantil"
                     $rootScope.eventos = data.response.docs
-                    $scope.mostrarEventos = ($scope.eventos.length > 0)
+                    $scope.hayEventos = ($scope.eventos.length > 0)
                 }).error(function(data, status, headers, config) {
                     
                 });
@@ -188,7 +188,7 @@ angular.module('starter.controllers', ['ngSanitize'])
   $scope.eventos = $localstorage.allObjects()
   $scope.eventos.nav = "Favoritos"
   $rootScope.eventos = $scope.eventos
-  $scope.mostrarEventos = ($scope.eventos.length > 0)
+  $scope.hayEventos = ($scope.eventos.length > 0)
   $scope.textoNoContent = '¡Aún no tienes favoritos! \n\n Anímate a guardar tus eventos favoritos, y así podrás verlos en el mapa de un vistazo.'
 })
 

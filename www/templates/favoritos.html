@@ -1,13 +1,13 @@
 <ion-view view-title="Tus Favoritos en La Agendica">
   <ion-content>
-    <ion-list ng-show="mostrarEventos">
+    <ion-list ng-show="hayEventos">
       <ion-item class="item-thumbnail-left" ng-repeat="evento in eventos" href="#/app/evento/{{$index}}">
         <img src="{{evento.imagen_s}}">
         <h2>{{evento.title}}</h2>
         <p>Del {{evento.fechaInicio_dt | date:'dd-MMM-yy'}} al {{evento.fechaFinal_dt | date:'dd-MMM-yy'}}</p>
       </ion-item>
     </ion-list>
-    <div class="list card" ng-hide="mostrarEventos" style="text-align:center">
+    <div class="list card" ng-hide="hayEventos" style="text-align:center">
       <a href="#" class="item item-icon-left item-text-wrap">
         <i class="icon ion-android-sad"></i>
         <pre class="evpre">{{textoNoContent}}</pre>
