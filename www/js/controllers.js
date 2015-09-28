@@ -19,38 +19,15 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 
 })
 
-.controller('DestacadosCtrl', function($scope, $http, $stateParams, $rootScope) {
-  var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
-  var destacadosSPARQL = "PREFIX acto: <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#>\
-  PREFIX s: <http://schema.org/>\
-  SELECT DISTINCT ?id ?uri ?title ?startDate ?endDate concat('http:', ?image) as ?image ?description ?latitud ?longitud \
-  WHERE {\
-    ?uri a s:Event;\
-    dcterms:identifier ?id;\
-    rdfs:label  ?title.\
-    OPTIONAL {?uri s:subEvent ?subEvent.}\
-    OPTIONAL {?subEvent s:startDate ?startDate.}\
-    OPTIONAL {?subEvent s:endDate ?endDate.}\
-    OPTIONAL{ ?uri dcterms:description ?description}.\
-    OPTIONAL{ ?uri s:image ?image}.\
-    OPTIONAL {?uri geo:geometry ?geo.\
-    ?geo geo:lat ?latitud.\
-    ?geo geo:long ?longitud}.\
-    ?uri acto:destacada \"true\".\
-  }"
-
+.controller('DestacadosCtrl', function($scope, ApiSparql, $rootScope) {
+  $scope.textoNoContent = 'Actualmente no existen eventos destacados'
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
 
-  $http.get(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
-    .success(function(data, status, headers, config) {
-        
-        $scope.eventos = data.results.bindings
-        $rootScope.eventos = data.results.bindings
-        $scope.hayEventos = ($scope.eventos.length > 0)
-        $scope.textoNoContent = 'Actualmente no existen eventos destacados'
-    }).error(function(data, status, headers, config) {
-        
-    });
+  $scope.destacados = ApiSparql.get(function(evento) {
+    $scope.eventos = evento.results.bindings;
+    $rootScope.eventos = evento.results.bindings;
+    $scope.hayEventos = ($scope.eventos.length > 0)
+  });
 })
 
 .controller('SemanaSantaDiaCtrl', function($scope, ApiSemanaSanta, $stateParams, $state, $location) {
