@@ -1,4 +1,4 @@
-angular.module('starter.controllers', ['ngSanitize'])
+angular.module('starter.controllers', ['starter.services', 'ngSanitize'])
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $localstorage, $state, $ionicPopup) {
 
@@ -53,13 +53,18 @@ angular.module('starter.controllers', ['ngSanitize'])
     });
 })
 
-.controller('SemanaSantaDiaCtrl', function($scope, $http, $stateParams, $state, $location) {
+.controller('SemanaSantaDiaCtrl', function($scope, ApiSemanaSanta, $stateParams, $state, $location) {
   $scope.diasanto = $stateParams.dia.replace("-", " ").replace("-", " ");
+
+/*
   $http.get('semana-santa-2015.json').success(function(data) {
     $scope.procesiones = data.result;
   }).error(function(data, status, headers, config) {
     console.log("NO JSON");
   });
+*/
+  $scope.procesiones = ApiSemanaSanta.query();
+
   $scope.goMap = function(procesion) {
     $state.go('app.semana-santa-map', {id: procesion.id});
   };
