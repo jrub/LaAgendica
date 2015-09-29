@@ -67,6 +67,18 @@ angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controll
     views: {
       'menuContent': {
         templateUrl: "templates/pilares.html",
+        controller: function($scope) {
+          $scope.dias = ["Viernes-9", "Sábado-10", "Domingo-11", "Lunes-12", "Martes-13", "Miércoles-14", "Jueves-15", "Viernes-16", "Sábado-17", "Domingo-18"];
+        }
+      }
+    }
+  })
+
+  .state('app.pilares-dia', {
+    url: "/pilares/:dia",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/pilares-dia.html",
         controller: 'PilaresCtrl'
       }
     }

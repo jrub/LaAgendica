@@ -1,0 +1,11 @@
+<ion-view view-title="{{diaPilar}}">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-thumbnail-left" ng-repeat="evento in eventos | filter:{startDate:dias[diaPilar]}" href="#/app/pilares/{{$index}}">
+        <img src="{{evento.image}}">
+        <h2>{{evento.title}}</h2>
+        <p>Del {{evento.startDate | date:'dd-MMM-yy'}} al {{evento.endDate | date:'dd-MMM-yy'}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

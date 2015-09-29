@@ -1,10 +1,8 @@
 <ion-view view-title="Pilares 2015">
   <ion-content>
     <ion-list>
-      <ion-item class="item-thumbnail-left" ng-repeat="evento in eventos" href="#/app/pilares/{{$index}}">
-        <img src="{{evento.image}}">
-        <h2>{{evento.title}}</h2>
-        <p>Del {{evento.startDate | date:'dd-MMM-yy'}} al {{evento.endDate | date:'dd-MMM-yy'}}</p>
+      <ion-item class="item-text-wrap" ng-repeat="dia in dias" href="#/app/pilares/{{dia}}">
+        {{dia.replace("-", " ").replace("-", " ")}}
       </ion-item>
     </ion-list>
   </ion-content>
