@@ -26,3 +26,7 @@ laAgendicaServices.factory('ApiSparql', function($resource) {
 
   return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0');
 });
+
+laAgendicaServices.factory('ApiPilares', function($resource) {
+  return $resource('http://www.zaragoza.es/api/recurso/cultura-ocio/evento-zaragoza.json?start=0&rows=400&q=programa==Fiestas+del+Pilar');
+});

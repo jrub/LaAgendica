@@ -19,6 +19,12 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 
 })
 
+.controller('PilaresCtrl', function($scope, ApiPilares, $rootScope) {
+  ApiPilares.get(function(evento) {
+    $scope.eventos = evento.result;
+  });
+})
+
 .controller('DestacadosCtrl', function($scope, ApiSparql, $rootScope) {
   $scope.textoNoContent = 'Actualmente no existen eventos destacados'
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
