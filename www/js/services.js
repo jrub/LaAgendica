@@ -27,29 +27,33 @@ laAgendicaServices.factory('ApiSparql', function($resource) {
   return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0');
 });
 
-laAgendicaServices.factory('ApiPilares', function($resource) {
-  var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
-  var query = "SELECT DISTINCT *\
-    WHERE {\
-      ?uri a s:Event;\
-      dcterms:identifier ?id;\
-      rdfs:label ?title;\
-      rdfs:comment ?description.\
-      OPTIONAL {?uri s:subEvent ?subEvent.}\
-      OPTIONAL {?subEvent s:startDate ?startDate.}\
-      OPTIONAL {?subEvent s:endDate ?endDate.}\
-      OPTIONAL {?subEvent s:startTime ?startTime.}\
-      OPTIONAL {?subEvent s:endTime ?endTime.}\
-      OPTIONAL {?subEvent s:openingHours ?horario.}\
-      OPTIONAL{ ?uri s:image ?image}.\
-      OPTIONAL {?uri geo:geometry ?geo.\
-      ?geo geo:lat ?latitud.\
-      ?geo geo:long ?longitud.}\
-      ?uri <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#programa> ?programa.\
-      FILTER (REGEX(STR(?programa), 'Fiestas del Pilar', 'i'))\
-      FILTER (xsd:date(?startDate) < '2015-10-12'^^xsd:date and xsd:date(?endDate) > '2015-10-12'^^xsd:date)\
-    }\
-    order by ?startTime"
-  ;
-  return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=application%2Fsparql-results%2Bjson&timeout=0');
+laAgendicaServices.factory('ApiPilares', function ($resource) {
+    return { 
+        fn: function(dateStr) { 
+
+            var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
+            var query = "SELECT DISTINCT *\
+              WHERE {\
+                ?uri a s:Event;\
+                dcterms:identifier ?id;\
+                rdfs:label ?title;\
+                rdfs:comment ?description.\
+                OPTIONAL {?uri s:subEvent ?subEvent.}\
+                OPTIONAL {?subEvent s:startDate ?startDate.}\
+                OPTIONAL {?subEvent s:endDate ?endDate.}\
+                OPTIONAL {?subEvent s:startTime ?startTime.}\
+                OPTIONAL {?subEvent s:endTime ?endTime.}\
+                OPTIONAL {?subEvent s:openingHours ?horario.}\
+                OPTIONAL{ ?uri s:image ?image}.\
+                OPTIONAL {?uri geo:geometry ?geo.\
+                ?geo geo:lat ?latitud.\
+                ?geo geo:long ?longitud.}\
+                ?uri <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#programa> ?programa.\
+                FILTER (REGEX(STR(?programa), 'Fiestas del Pilar', 'i'))\
+                FILTER (xsd:date(?startDate) < '"+ dateStr +"'^^xsd:date and xsd:date(?endDate) > '"+ dateStr +"'^^xsd:date)\
+              }\
+              order by ?startTime";
+            return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
+        }
+    };
 });
