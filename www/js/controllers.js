@@ -21,10 +21,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 
 .controller('PilaresCtrl', function($scope, ApiPilares, $stateParams) {
   $scope.diaPilar = $stateParams.dia.replace("-", " ").replace("-", " ");
-  $scope.dias = {"Viernes 9":"2015-10-09T00:00:00Z", "Sábado 10":"2015-10-10T00:00:00Z", "Domingo 11":"2015-10-11T00:00:00Z", "Lunes 12":"2015-10-12T00:00:00Z", "Martes 13":"2015-10-13T00:00:00Z", "Miércoles 14":"2015-10-14T00:00:00Z", "Jueves 15":"2015-10-15T00:00:00Z", "Viernes 16":"2015-10-16T00:00:00Z", "Sábado 17":"2015-10-17T00:00:00Z", "Domingo 18":"2015-10-18T00:00:00Z"};
-  console.log("diaPilar: " + $scope.diaPilar + " dias[diaPilar]: " + $scope.dias[$scope.diaPilar]);
   ApiPilares.get(function(evento) {
-    $scope.eventos = evento.result;
+    $scope.eventos = evento.results.bindings;
   });
 })
 
