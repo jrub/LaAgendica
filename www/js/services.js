@@ -50,7 +50,7 @@ laAgendicaServices.factory('ApiPilares', function ($resource) {
                 ?geo geo:long ?longitud.}\
                 ?uri <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#programa> ?programa.\
                 FILTER (REGEX(STR(?programa), 'Fiestas del Pilar', 'i'))\
-                FILTER (xsd:date(?startDate) < '"+ dateStr +"'^^xsd:date and xsd:date(?endDate) > '"+ dateStr +"'^^xsd:date)\
+                FILTER (xsd:date(?startDate) <= '"+ dateStr +"'^^xsd:date and xsd:date(?endDate) >= '"+ dateStr +"'^^xsd:date)\
               }";
             return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
         }
