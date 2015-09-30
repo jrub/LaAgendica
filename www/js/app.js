@@ -84,6 +84,16 @@ angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controll
     }
   })
 
+  .state('app.pilares-evento', {
+    url: "/pilares/:dia/:evento",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/pilares-evento.html",
+        controller: 'PilaresEventoCtrl'
+      }
+    }
+  })
+
   .state('app.destacados', {
     url: "/destacados",
     cache: false,
