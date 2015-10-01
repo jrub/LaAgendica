@@ -54,23 +54,11 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   });
 })
 
-.controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares, SharingService) {
+.controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService) {
   $scope.shareFn = SharingService;
+  $scope.navigate = MapNavigationService;
 
   var eventoId = $stateParams.evento;
-
-  $scope.ruta = function(lat, lng) {
-    launchnavigator.navigate(
-      [lat, lng],
-      null,
-      function(){
-          console.log("Plugin success");
-      },
-      function(error){
-          console.log("Plugin error: "+ error);
-      }
-    );
-  };
 
   var procesarEventos = function() {
     var evento;
@@ -243,8 +231,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   $scope.textoNoContent = '¡Aún no tienes favoritos! \n\n Anímate a guardar tus eventos favoritos, y así podrás verlos en el mapa de un vistazo.'
 })
 
-.controller('DestacadoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService) {
-  
+.controller('DestacadoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService, MapNavigationService) {
+  $scope.navigate = MapNavigationService;
   $scope.shareFn = SharingService;
   if (!$rootScope.eventos) {
     $state.go('app.destacados')
@@ -288,8 +276,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   }
 })
 
-.controller('EventoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService) {
-
+.controller('EventoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService, MapNavigationService) {
+  $scope.navigate = MapNavigationService;
   $scope.shareFn = SharingService;
   if (!$rootScope.eventos) {
     $state.go('app.destacados')

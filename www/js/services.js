@@ -14,6 +14,23 @@ laAgendicaServices.factory('SharingService', function() {
   return shareFunction;
 });
 
+laAgendicaServices.factory('MapNavigationService', function() {
+  var navigate = function(lat, lng) {
+    launchnavigator.navigate(
+      [lat, lng],
+      null,
+      function(){
+          console.log("Navigator Plugin success");
+      },
+      function(error){
+          console.log("Navigator Plugin error: "+ error);
+      }
+    );
+  };
+
+  return navigate;
+});
+
 laAgendicaServices.factory('ApiSemanaSanta', function($resource) {
   return $resource('semana-santa-2015.json');
 });
