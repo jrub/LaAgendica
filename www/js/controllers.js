@@ -55,6 +55,17 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 })
 
 .controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares) {
+  //Pasar esto a un Servicio
+  $scope.shareFn = function(message, url) {
+    if (window.plugins && window.plugins.socialsharing) {
+      //Using Cordova
+      window.plugins.socialsharing.share(message, null, null, url);
+    } else {
+      //In web browser, share on Twitter
+      window.open("https://twitter.com/intent/tweet?text=Echa un vistazo a este evento que encontré en @LaAgendica " + url + "&hashtags=Zaragoza,LaAgendica")
+    }
+  };
+
   var eventoId = $stateParams.evento;
 
   var procesarEventos = function() {
@@ -77,6 +88,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   } else {
     procesarEventos();
   }
+
+  
 
 })
 
