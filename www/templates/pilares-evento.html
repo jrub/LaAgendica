@@ -25,7 +25,7 @@
           <i class="icon ion-share"></i>
           Compartir
         </a>
-        <a class="tab-item" href='{{evento.uri.value.replace("http://www.zaragoza.es/api/recurso/cultura-ocio/evento-zaragoza/", "http://www.zaragoza.es/ciudad/actividades/ficha_Agenda?codigo=")}}' target="_blank">
+        <a class="tab-item" ng-click="abrir(evento.uri.value)">
           <i class="icon ion-share"></i>
           Ver Web
         </a>

@@ -54,9 +54,10 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   });
 })
 
-.controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService) {
+.controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService, InAppBrowserService) {
   $scope.shareFn = SharingService;
   $scope.navigate = MapNavigationService;
+  $scope.abrir = InAppBrowserService;
 
   var eventoId = $stateParams.evento;
 
@@ -231,9 +232,11 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   $scope.textoNoContent = '¡Aún no tienes favoritos! \n\n Anímate a guardar tus eventos favoritos, y así podrás verlos en el mapa de un vistazo.'
 })
 
-.controller('DestacadoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService, MapNavigationService) {
+.controller('DestacadoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService, MapNavigationService, InAppBrowserService) {
   $scope.navigate = MapNavigationService;
   $scope.shareFn = SharingService;
+  $scope.abrir = InAppBrowserService;
+
   if (!$rootScope.eventos) {
     $state.go('app.destacados')
     $ionicHistory.nextViewOptions({
@@ -276,9 +279,11 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   }
 })
 
-.controller('EventoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService, MapNavigationService) {
+.controller('EventoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService, MapNavigationService, InAppBrowserService) {
   $scope.navigate = MapNavigationService;
   $scope.shareFn = SharingService;
+  $scope.abrir = InAppBrowserService;
+
   if (!$rootScope.eventos) {
     $state.go('app.destacados')
     $ionicHistory.nextViewOptions({

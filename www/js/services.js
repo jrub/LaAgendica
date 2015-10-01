@@ -31,6 +31,17 @@ laAgendicaServices.factory('MapNavigationService', function() {
   return navigate;
 });
 
+laAgendicaServices.factory('InAppBrowserService', function() {
+  var abrir = function(uri) {
+    if (uri === undefined) {
+      alert("Disculpe, detalle no disponible");
+      return ;
+    }
+    window.open(encodeURI(uri), '_system', 'location=yes' );
+  };
+  return abrir;
+});
+
 laAgendicaServices.factory('ApiSemanaSanta', function($resource) {
   return $resource('semana-santa-2015.json');
 });
