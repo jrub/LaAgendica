@@ -60,6 +60,19 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 
   var eventoId = $stateParams.evento;
 
+  $scope.ruta = function(lat, lng) {
+    launchnavigator.navigate(
+      [lat, lng],
+      null,
+      function(){
+          console.log("Plugin success");
+      },
+      function(error){
+          console.log("Plugin error: "+ error);
+      }
+    );
+  };
+
   var procesarEventos = function() {
     var evento;
     for (var i = 0; i < $rootScope.eventos.length; i++) {
