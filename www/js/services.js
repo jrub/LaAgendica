@@ -44,6 +44,7 @@ laAgendicaServices.factory('ApiPilares', function ($resource) {
                 OPTIONAL {?subEvent s:startTime ?startTime.}\
                 OPTIONAL {?subEvent s:endTime ?endTime.}\
                 OPTIONAL {?subEvent s:openingHours ?horario.}\
+                OPTIONAL {?uri s:price ?precio.}\
                 OPTIONAL{ ?uri s:image ?image}.\
                 OPTIONAL {?uri geo:geometry ?geo.\
                 ?geo geo:lat ?latitud.\

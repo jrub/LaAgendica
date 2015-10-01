@@ -11,7 +11,8 @@
       <div class="item item-body">
         <img class="evimage" ng-src="{{evento.image !== undefined ? 'http:' + evento.image.value : 'https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'}}">
         <div class="evpre" ng-bind-html="evento.description.value"></div>
-        <p>Horario: </p><div class="evpre" ng-bind-html="evento.horario.value"></div>
+        <strong>Horario: </strong><div class="evpre" ng-bind-html="evento.horario.value"></div>
+        <strong>Precio: </strong><div class="evpre" ng-bind-html="evento.precio.value"></div>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
