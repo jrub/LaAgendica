@@ -64,7 +64,7 @@ laAgendicaServices.factory('ApiSparql', function($resource) {
     ?geo geo:lat ?latitud.\
     ?geo geo:long ?longitud}.\
     ?uri acto:destacada \"true\".\
-  }";
+  } LIMIT 50";
 
   return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0');
 });
