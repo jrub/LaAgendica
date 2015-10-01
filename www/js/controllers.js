@@ -54,10 +54,44 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   });
 })
 
-.controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService, InAppBrowserService) {
+.controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService, InAppBrowserService, $localstorage) {
   $scope.shareFn = SharingService;
   $scope.navigate = MapNavigationService;
   $scope.abrir = InAppBrowserService;
+
+  $scope.gestionarFavorito = function(destacado) {
+    if (destacado === undefined) {
+      return;
+    };
+    var imageAux = {};
+    if (destacado && destacado.image && destacado.image.value) {
+      imageAux = destacado.image.value;
+    };
+    
+    var destacadofav = {
+      id : destacado.id.value,
+      description : destacado.description.value,
+      title : destacado.title.value,
+      fechaInicio_dt : destacado.startDate.value,
+      fechaFinal_dt : destacado.endDate.value,
+      imagen_s : imageAux,
+      coordenadas_p_0_coordinate: destacado.latitud.value,
+      coordenadas_p_1_coordinate: destacado.longitud.value
+    }
+    if ($scope.isFavorito(destacadofav.id)) {
+      $localstorage.removeItem(destacadofav.id)
+      $scope.evento.fav = false
+      return
+    } else {
+      $localstorage.setObject(destacadofav.id, destacadofav);
+      $scope.evento.fav = true
+    }
+  }
+
+  $scope.isFavorito = function(eventoId) {
+    var fav = $localstorage.getObject(eventoId)
+    return fav.id === eventoId
+  }
 
   var eventoId = $stateParams.evento;
 
@@ -70,20 +104,22 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
       };
     }
     $scope.evento = evento;
+
+    if ($scope.isFavorito(evento.id.value)) {
+      $scope.evento.fav = true // para pintar el boton fav activo
+    }
   }
 
   if ($rootScope.eventos === undefined) {
     ApiPilares.fn(diasPilares[$stateParams.dia]).get(function(evento) {
       $scope.eventos = evento.results.bindings;
       $rootScope.eventos = evento.results.bindings;
+      $scope.evento = $rootScope.eventos[$stateParams.evento]
       procesarEventos();
     });
   } else {
     procesarEventos();
   }
-
-  
-
 })
 
 .controller('DestacadosCtrl', function($scope, ApiSparql, $rootScope) {
@@ -362,7 +398,11 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 
         $scope.fav = fav;
 
-        var contentString = "<div><a ng-click='clickMapInfoWindow({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p><img src='"+ fav.imagen_s + "' width='100' height='60' class='evimage'/></a></div>";
+        var imgStr = "";
+        if (fav.imagen_s && (typeof fav.imagen_s == 'string')) {
+          imgStr = "<img src='"+ fav.imagen_s + "' width='100' height='60' class='evimage'/>"
+        };
+        var contentString = "<div><a ng-click='clickMapInfoWindow({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p>"+ imgStr +"</a></div>";
         var compiled = $compile(contentString)($scope);
 
         var infowindow = new google.maps.InfoWindow({
