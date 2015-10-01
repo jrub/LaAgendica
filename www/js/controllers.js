@@ -393,7 +393,11 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 
         $scope.fav = fav;
 
-        var contentString = "<div><a ng-click='clickMapInfoWindow({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p><img src='"+ fav.imagen_s + "' width='100' height='60' class='evimage'/></a></div>";
+        var imgStr = "";
+        if (fav.imagen_s && (typeof fav.imagen_s == 'string')) {
+          imgStr = "<img src='"+ fav.imagen_s + "' width='100' height='60' class='evimage'/>"
+        };
+        var contentString = "<div><a ng-click='clickMapInfoWindow({{fav}})'>" + fav.title + "<p>'Pulsa para ver detalle'</p>"+ imgStr +"</a></div>";
         var compiled = $compile(contentString)($scope);
 
         var infowindow = new google.maps.InfoWindow({
