@@ -55,7 +55,6 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 })
 
 .controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares, SharingService) {
-  //Pasar esto a un Servicio
   $scope.shareFn = SharingService;
 
   var eventoId = $stateParams.evento;
@@ -109,7 +108,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   });
 })
 
-.controller('SemanaSantaDiaCtrl', function($scope, ApiSemanaSanta, $stateParams, $state, $location) {
+.controller('SemanaSantaDiaCtrl', function($scope, ApiSemanaSanta, $stateParams, $state, $location, SharingService) {
+  $scope.shareFn = SharingService;
   $scope.diasanto = $stateParams.dia.replace("-", " ").replace("-", " ");
   $scope.procesiones = ApiSemanaSanta.query();
 
