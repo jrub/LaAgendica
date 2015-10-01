@@ -38,3 +38,11 @@
 .angular-leaflet-map {
     height: 100%;
 }
+.list-thumb {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    max-width: 80px;
+    max-height: 80px;
+    width: 100%;
+    height: 100%; }
