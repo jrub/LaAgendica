@@ -2,6 +2,31 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 
 .constant("diasPilares", {"Viernes 9":"2015-10-09", "Sábado 10":"2015-10-10", "Domingo 11":"2015-10-11", "Lunes 12":"2015-10-12", "Martes 13":"2015-10-13", "Miércoles 14":"2015-10-14", "Jueves 15":"2015-10-15", "Viernes 16":"2015-10-16", "Sábado 17":"2015-10-17", "Domingo 18":"2015-10-18"})
 
+// añade spinner 'loading' http://learn.ionicframework.com/formulas/loading-screen-with-interceptors/
+.config(function($httpProvider) {
+  $httpProvider.interceptors.push(function($rootScope) {
+    return {
+      request: function(config) {
+        $rootScope.$broadcast('loading:show')
+        return config
+      },
+      response: function(response) {
+        $rootScope.$broadcast('loading:hide')
+        return response
+      }
+    }
+  })
+})
+.run(function($rootScope, $ionicLoading) {
+  $rootScope.$on('loading:show', function() {
+    $ionicLoading.show({template: '<p>Cargando...</p><ion-spinner></ion-spinner>'})
+  })
+
+  $rootScope.$on('loading:hide', function() {
+    $ionicLoading.hide()
+  })
+})
+
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $localstorage, $state, $ionicPopup) {
 
   $scope.openMap = function() {
