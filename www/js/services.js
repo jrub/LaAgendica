@@ -1,5 +1,19 @@
 var laAgendicaServices = angular.module('laAgendica.services', ['ngResource']);
 
+laAgendicaServices.factory('SharingService', function() {
+  var shareFunction = function(message, url) {
+    if (window.plugins && window.plugins.socialsharing) {
+      //Using Cordova
+      window.plugins.socialsharing.share(message, null, null, url);
+    } else {
+      //In web browser, share on Twitter
+      window.open("https://twitter.com/intent/tweet?text=Echa un vistazo a este evento que encontré en @LaAgendica " + url + "&hashtags=Zaragoza,LaAgendica")
+    }
+  };
+
+  return shareFunction;
+});
+
 laAgendicaServices.factory('ApiSemanaSanta', function($resource) {
   return $resource('semana-santa-2015.json');
 });

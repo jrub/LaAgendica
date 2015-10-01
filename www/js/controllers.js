@@ -54,17 +54,9 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   });
 })
 
-.controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares) {
+.controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares, SharingService) {
   //Pasar esto a un Servicio
-  $scope.shareFn = function(message, url) {
-    if (window.plugins && window.plugins.socialsharing) {
-      //Using Cordova
-      window.plugins.socialsharing.share(message, null, null, url);
-    } else {
-      //In web browser, share on Twitter
-      window.open("https://twitter.com/intent/tweet?text=Echa un vistazo a este evento que encontré en @LaAgendica " + url + "&hashtags=Zaragoza,LaAgendica")
-    }
-  };
+  $scope.shareFn = SharingService;
 
   var eventoId = $stateParams.evento;
 
@@ -238,7 +230,9 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   $scope.textoNoContent = '¡Aún no tienes favoritos! \n\n Anímate a guardar tus eventos favoritos, y así podrás verlos en el mapa de un vistazo.'
 })
 
-.controller('DestacadoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory) {
+.controller('DestacadoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService) {
+  
+  $scope.shareFn = SharingService;
   if (!$rootScope.eventos) {
     $state.go('app.destacados')
     $ionicHistory.nextViewOptions({
@@ -281,7 +275,9 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   }
 })
 
-.controller('EventoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory) {
+.controller('EventoCtrl', function($scope, $state, $stateParams, $rootScope, $localstorage, $ionicPopup, $ionicHistory, SharingService) {
+
+  $scope.shareFn = SharingService;
   if (!$rootScope.eventos) {
     $state.go('app.destacados')
     $ionicHistory.nextViewOptions({

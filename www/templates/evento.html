@@ -18,9 +18,13 @@
             <i class="icon ion-star" ng-class="{energized: evento.fav}"></i>
             Favorito
         </a>
-        <a class="tab-item" href="https://twitter.com/intent/tweet?text=Echa un vistazo a este evento que encontré en @LaAgendica {{evento.uri}}&hashtags=Zaragoza,LaAgendica">
-          <i class="icon ion-social-twitter"></i>
-          Twittear
+        <!-- <a class="tab-item" href="https://twitter.com/intent/tweet?text=Echa un vistazo a este evento que encontré en @LaAgendica {{evento.uri}}&hashtags=Zaragoza,LaAgendica"> -->
+          <!-- <i class="icon ion-social-twitter"></i> -->
+          <!-- Twittear -->
+        <!-- </a> -->
+        <a class="tab-item" ng-click="shareFn('Echa un vistazo a este evento que encontré en @LaAgendica #Zaragoza #LaAgendica', evento.uri)">
+          <i class="icon ion-share"></i>
+          Compartir
         </a>
         <a class="tab-item" href="{{evento.uri}}" target="_blank">
           <i class="icon ion-share"></i>
