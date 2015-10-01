@@ -2,7 +2,9 @@
   "name": "LaAgendica",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-rc.1",
-    "platform": "~1.3.0"
+    "ionic": "driftyco/ionic-bower#1.1.0"
+  },
+  "resolutions": {
+    "angular": "1.4.7"
   }
 }
