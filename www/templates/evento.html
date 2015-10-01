@@ -30,7 +30,7 @@
           <i class="icon ion-share"></i>
           Ver Web
         </a>
-        <a class="tab-item" ng-click="navigate(evento.latitud.value, evento.longitud.value)">
+        <a ng-show="evento.coordenadas_p_0_coordinate" class="tab-item" ng-click="navigate(evento.coordenadas_p_0_coordinate, evento.coordenadas_p_1_coordinate)">
           <i class="icon ion-map"></i>
           Ruta
         </a>
