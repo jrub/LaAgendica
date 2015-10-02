@@ -52,14 +52,17 @@
     width: 100%;
     height: 100%; }
 
-.list-no-separator {
-  border-top: 0px;
-  border-left: 0px;
-  border-right: 0px;
-  border-bottom: 0px;
-}
-
 .card-no-margin {
     margin: 0px 0px;
     text-align: center;
+}
+
+.detail-thumb {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    max-width: 40px;
+    max-height: 40px;
+    width: 100%;
+    height: 100%;
 }

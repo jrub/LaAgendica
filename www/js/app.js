@@ -68,6 +68,26 @@ angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controll
       }
   })
 
+  .state('app.hoy', {
+    url: "/hoy",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/hoy.html",
+        controller: 'HoyCtrl'
+      }
+    }
+  })
+
+  .state('app.hoy-detalle', {
+    url: "/hoy/:evento",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/pilares-evento.html",
+        controller: 'PilaresEventoCtrl'
+      }
+    }
+  })
+
   .state('app.pilares', {
     url: "/pilares",
     views: {
@@ -197,7 +217,7 @@ angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controll
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/destacados');
+  $urlRouterProvider.otherwise('/app/hoy');
 })
 
 .factory('$localstorage', ['$window', function($window) {
