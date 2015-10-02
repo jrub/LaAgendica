@@ -470,7 +470,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
       twitter :     'https://twitter.com/jrubr',
       web:          'http://www.javirubio.net',
       github:       'https://github.com/jrub',
-      imagenPerfil: 'http://www.gravatar.com/avatar/1328823cb98b75b1f020eabed78b1ff9.png?s=500',
+      imagenPerfil: 'https://www.gravatar.com/avatar/1328823cb98b75b1f020eabed78b1ff9.png?s=500',
       imagen:       ''
     }
     var tor  = {
@@ -480,7 +480,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
       twitter:      'https://twitter.com/torhector2',
       web:          'https://www.behance.net/torhector2',
       github:       'https://github.com/torhector2',
-      imagenPerfil: 'http://www.gravatar.com/avatar/1b951ff3d08e1d7fb7b7f94242855531.png?s=500',
+      imagenPerfil: 'https://www.gravatar.com/avatar/1b951ff3d08e1d7fb7b7f94242855531.png?s=500',
       imagen:       ''
     }
 
