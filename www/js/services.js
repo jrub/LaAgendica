@@ -104,3 +104,33 @@ laAgendicaServices.factory('ApiPilares', function ($resource) {
         }
     };
 });
+
+laAgendicaServices.factory('ApiHoy', function ($resource) {
+    return {
+      fn: function() {
+        var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
+        // indentado a la izq para evitar docenas de "%20" en la request
+        var query = "SELECT DISTINCT *\
+WHERE {\
+?uri a s:Event;\
+dcterms:identifier ?id;\
+rdfs:label ?title;\
+rdfs:comment ?description.\
+OPTIONAL {?uri s:subEvent ?subEvent.}\
+OPTIONAL {?subEvent s:startDate ?startDate.}\
+OPTIONAL {?subEvent s:endDate ?endDate.}\
+OPTIONAL {?subEvent s:startTime ?startTime.}\
+OPTIONAL {?subEvent s:endTime ?endTime.}\
+OPTIONAL {?subEvent s:openingHours ?horario.}\
+OPTIONAL {?uri s:price ?precio.}\
+OPTIONAL{ ?uri s:image ?image}.\
+OPTIONAL {?uri geo:geometry ?geo.\
+?geo geo:lat ?latitud.\
+?geo geo:long ?longitud.}\
+?uri <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#diasParaTerminar> ?diasParaTerminar.\
+FILTER (?diasParaTerminar='1').\
+}";
+            return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
+        }
+    };
+});

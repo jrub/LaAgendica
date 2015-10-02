@@ -133,6 +133,18 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   });
 })
 
+.controller('HoyCtrl', function($scope, ApiHoy, $rootScope, $filter) {
+  $scope.textoNoContent = 'Hoy no hay eventos. Parece que hoy es un día para relajarte en casa...'
+  $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
+
+  ApiHoy.fn().get(function(evento) {
+    $scope.eventos = evento.results.bindings;
+    $rootScope.eventos = evento.results.bindings;
+    $scope.hayEventos = ($scope.eventos.length > 0)
+
+  });
+})
+
 .controller('SemanaSantaDiaCtrl', function($scope, ApiSemanaSanta, $stateParams, $state, $location, SharingService) {
   $scope.shareFn = SharingService;
   $scope.diasanto = $stateParams.dia.replace("-", " ").replace("-", " ");
