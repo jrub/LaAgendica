@@ -16,16 +16,21 @@ laAgendicaServices.factory('SharingService', function() {
 
 laAgendicaServices.factory('MapNavigationService', function() {
   var navigate = function(lat, lng) {
-    launchnavigator.navigate(
-      [lat, lng],
-      null,
-      function(){
-          console.log("Navigator Plugin success");
-      },
-      function(error){
-          console.log("Navigator Plugin error: "+ error);
-      }
-    );
+    // abre gmaps en browser si WebApp, mapas nativos si App
+    if (!window.cordova) {
+      window.open( "https://maps.google.com/?saddr=Current%20Location&daddr=" + lat + "," + lng , '_system', 'location=yes' );
+    } else {
+      launchnavigator.navigate(
+        [lat, lng],
+        null,
+        function(){
+            console.log("Navigator Plugin success");
+        },
+        function(error){
+            console.log("Navigator Plugin error: "+ error);
+        }
+      );
+    }
   };
 
   return navigate;
