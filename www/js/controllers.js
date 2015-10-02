@@ -295,6 +295,9 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
       coordenadas_p_0_coordinate: destacado.latitud.value,
       coordenadas_p_1_coordinate: destacado.longitud.value
     }
+    if(destacadofav.imagen_s == "http:") {
+      delete destacadofav.imagen_s;
+    }
     if ($scope.isFavorito(destacadofav.id)) {
       $localstorage.removeItem(destacadofav.id)
       $scope.evento.fav = false

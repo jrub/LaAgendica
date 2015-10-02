@@ -9,7 +9,9 @@
       </div>
 
       <div class="item item-body">
-        <img class="evimage" src="{{evento.imagen_s}}">
+        <!-- <img class="evimage" src="{{evento.imagen_s}}"> -->
+        <img class="evimage" ng-show="evento.imagen_s !== 'http:'" src="{{evento.imagen_s}}"/>
+        <img class="evimage" ng-show="evento.imagen_s === undefined || evento.imagen_s == 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
         <pre class="evpre" ng-bind-html="evento.description"></pre>
       </div>
 
