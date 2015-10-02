@@ -1,8 +1,12 @@
 <ion-view view-title="Pilares 2015">
   <ion-content>
     <ion-list>
-      <ion-item class="item-text-wrap" ng-repeat="dia in dias" href="#/app/pilares/{{dia}}">
-        {{dia.replace("-", " ").replace("-", " ")}}
+      <ion-item class="item-text-wrap list-no-separator" ng-repeat="dia in dias" href="#/app/pilares/{{dia}}">
+      	<div class="card card-no-margin">
+		  <div class="item item-text-wrap">
+	        <b>{{dia.replace("-", " ").replace("-", " ")}}</b>
+	      </div>
+	    </div>  
       </ion-item>
     </ion-list>
   </ion-content>
