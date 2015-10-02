@@ -217,7 +217,7 @@ angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controll
     }
   });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/destacados');
+  $urlRouterProvider.otherwise('/app/hoy');
 })
 
 .factory('$localstorage', ['$window', function($window) {
