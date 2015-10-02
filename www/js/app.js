@@ -1,4 +1,4 @@
-angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controllers'])
+angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controllers', 'ngIOS9UIWebViewPatch'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
