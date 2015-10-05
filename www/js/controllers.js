@@ -46,15 +46,15 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
 
 })
 
-.controller('PilaresCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares) {
+.controller('PilaresCtrl', function($scope, ApiFecha, $stateParams, $rootScope, diasPilares) {
   $scope.diaPilar = $stateParams.dia.replace("-", " ").replace("-", " ");
-  ApiPilares.fn(diasPilares[$scope.diaPilar]).get(function(evento) {
+  ApiFecha.fn(diasPilares[$scope.diaPilar], 'Fiestas del Pilar').get(function(evento) {
     $scope.eventos = evento.results.bindings;
     $rootScope.eventos = evento.results.bindings;
   });
 })
 
-.controller('PilaresEventoCtrl', function($scope, ApiPilares, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService, InAppBrowserService, $localstorage) {
+.controller('PilaresEventoCtrl', function($scope, ApiFecha, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService, InAppBrowserService, $localstorage) {
   $scope.shareFn = SharingService;
   $scope.navigate = MapNavigationService;
   $scope.abrir = InAppBrowserService;
@@ -111,7 +111,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   }
 
   if ($rootScope.eventos === undefined) {
-    ApiPilares.fn(diasPilares[$stateParams.dia]).get(function(evento) {
+    ApiFecha.fn(diasPilares[$stateParams.dia], 'Fiestas del Pilar').get(function(evento) {
       $scope.eventos = evento.results.bindings;
       $rootScope.eventos = evento.results.bindings;
       $scope.evento = $rootScope.eventos[$stateParams.evento]
@@ -133,11 +133,11 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   });
 })
 
-.controller('HoyCtrl', function($scope, ApiHoy, $rootScope, $filter) {
+.controller('HoyCtrl', function($scope, ApiFecha, $rootScope, $filter) {
   $scope.textoNoContent = 'Hoy no hay eventos. Parece que hoy es un día para relajarte en casa...'
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
-
-  ApiHoy.fn().get(function(evento) {
+  var hoy = $filter('date')(Date.now(), 'yyyy-MM-dd');
+  ApiFecha.fn(hoy, null).get(function(evento) {
     $scope.eventos = evento.results.bindings;
     $rootScope.eventos = evento.results.bindings;
     $scope.hayEventos = ($scope.eventos.length > 0)
