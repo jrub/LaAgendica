@@ -9,7 +9,7 @@
       </div>
 
       <div class="item item-body">
-        <img class="evimage" src="{{evento.imagen_s}}">
+        <img class="evimage" ng-src="{{evento.imagen_s}}">
         <pre class="evpre" ng-bind-html="evento.description"></pre>
       </div>
 
@@ -18,10 +18,6 @@
             <i class="icon ion-star" ng-class="{energized: evento.fav}"></i>
             Favorito
         </a>
-        <!-- <a class="tab-item" href="https://twitter.com/intent/tweet?text=Echa un vistazo a este evento que encontré en @LaAgendica {{evento.uri}}&hashtags=Zaragoza,LaAgendica"> -->
-          <!-- <i class="icon ion-social-twitter"></i> -->
-          <!-- Twittear -->
-        <!-- </a> -->
         <a class="tab-item" ng-click="shareFn('Echa un vistazo a este evento que encontré en @LaAgendica #Zaragoza #LaAgendica', evento.uri)">
           <i class="icon ion-share"></i>
           Compartir

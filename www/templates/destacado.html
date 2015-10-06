@@ -9,7 +9,10 @@
       </div>
 
       <div class="item item-body">
-        <img class="evimage" src="{{evento.image.value}}">
+
+        <img class="evimage" ng-show="evento.image.value !== 'http:'" ng-src="{{evento.image.value}}"/>
+        <img class="evimage" ng-show="evento.image.value === 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
+
         <div class="evpre" ng-bind-html="evento.description.value"></div>
       </div>
 

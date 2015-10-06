@@ -2,7 +2,7 @@
   <ion-content>
     <ion-list>
       <ion-item class="item-thumbnail-left" ng-repeat="evento in eventos | orderBy : 'startTime.value'" href="#/app/pilares/{{diaPilar}}/{{evento.id.value}}">
-        <img ng-show="evento.image" src="http:{{evento.image.value}}"/>
+        <img ng-show="{{evento.image}}" ng-src="http:{{evento.image.value}}"/>
         <img class="list-thumb" ng-hide="evento.image" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
         <h2>{{evento.title.value}}</h2>
         <p ng-show="evento.startTime.value">{{evento.startTime.value}} <span ng-show="evento.endTime.value">a</span> {{evento.endTime.value}}</p>
