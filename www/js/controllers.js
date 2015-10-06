@@ -462,7 +462,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
     
   })
 
-  .controller('TeamCtrl', function($scope) {
+  .controller('TeamCtrl', function($scope, InAppBrowserService) {
+    $scope.abrir = InAppBrowserService;
     var javi = {
       nombre:       'Javier Rubio',
       rolTecnico:   'Android Developer',
@@ -470,8 +471,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
       twitter :     'https://twitter.com/jrubr',
       web:          'http://www.javirubio.net',
       github:       'https://github.com/jrub',
-      imagenPerfil: 'https://www.gravatar.com/avatar/1328823cb98b75b1f020eabed78b1ff9.png?s=500',
-      imagen:       ''
+      imagenPerfil: 'https://www.gravatar.com/avatar/1328823cb98b75b1f020eabed78b1ff9.png?s=500'
     }
     var tor  = {
       nombre:       'Héctor Rodríguez',
@@ -480,23 +480,26 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
       twitter:      'https://twitter.com/torhector2',
       web:          'https://www.behance.net/torhector2',
       github:       'https://github.com/torhector2',
-      imagenPerfil: 'https://www.gravatar.com/avatar/1b951ff3d08e1d7fb7b7f94242855531.png?s=500',
-      imagen:       ''
+      imagenPerfil: 'https://www.gravatar.com/avatar/1b951ff3d08e1d7fb7b7f94242855531.png?s=500'
     }
 
     var team = [javi, tor]
     $scope.members = shuffle(team)
 
-    function shuffle(o){ //v1.0
+    function shuffle(o) {
       for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
       return o;
-
     };
-
   })
 
   .controller('AboutCtrl', function($scope) {
-
+    // makes sure all links to be opened in a new tab (target='_blank') are opened with window.open,
+    // which makes it work both as WebApp and native app. Only works without '{{ngVars}}'
+    angular.element(document.querySelectorAll("a[target='_blank']")).on("click", (function(e){
+      alert("open mio");
+      e.preventDefault();
+      window.open(e.currentTarget.href, '_system', 'location=yes');
+    }));
   })
 
 ;

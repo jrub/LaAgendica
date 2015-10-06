@@ -15,15 +15,15 @@
               </div>
 
               <div class="item tabs tabs-secondary tabs-icon-left">
-                <a class="tab-item" href="{{miembro.twitter}}" target="_blank">
+                <a class="tab-item" ng-click="abrir('{{miembro.twitter}}')">
 	              <i class="icon ion-social-twitter-outline"></i>
 	              Twitter
                 </a>
-                <a class="tab-item" href="{{miembro.github}}" target="_blank">
+                <a class="tab-item" ng-click="abrir('{{miembro.github}}')">
                   <i class="icon ion-social-octocat"></i>
                   Github
                 </a>
-                <a class="tab-item" href="{{miembro.web}}" target="_blank">
+                <a class="tab-item" ng-click="abrir('{{miembro.web}}')">
                   <i class="icon ion-android-globe"></i>
                   Web
                 </a>
@@ -33,7 +33,7 @@
       </ion-item>
     </ion-list>
     <pre class="evpre nobottom" style="padding: 16px;">
-Nuestro agradecimiento a <a href="http://www.conmisojos.com">Fernando Sánchez</a> por el diseño del logo de LaAgendica y la ayuda con la realización del vídeo promocional. ¡Mil gracias Fer!
+Nuestro agradecimiento a <a href='' ng-click="abrir('http://www.conmisojos.com')">Fernando Sánchez</a> por el diseño del logo de LaAgendica y la ayuda con la realización del vídeo promocional. ¡Mil gracias Fer!
     </pre>
   </ion-content>
 </ion-view>

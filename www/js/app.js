@@ -11,12 +11,6 @@ angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controll
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    if (window.cordova) {
-      window.open = cordova.InAppBrowser.open;
-    } else {
-      delete window.open;
-      console.log("** WebApp Mode **");
-    }
   });
 })
 
