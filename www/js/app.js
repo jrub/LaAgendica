@@ -1,4 +1,4 @@
-angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controllers', 'ngIOS9UIWebViewPatch'])
+angular.module('laAgendica', ['ionic', /*'leaflet-directive',*/ 'laAgendica.controllers', 'ngIOS9UIWebViewPatch'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,6 +30,7 @@ angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controll
     controller: 'AppCtrl'
   })
 
+/* Don't load Semana Santa Controllers
   .state('app.semana-santa', {
     url: "/semana-santa",
     views: {
@@ -61,6 +62,7 @@ angular.module('laAgendica', ['ionic', 'leaflet-directive', 'laAgendica.controll
         }
       }
   })
+*/
 
   .state('app.hoy', {
     url: "/hoy",
