@@ -54,7 +54,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   });
 })
 
-.controller('PilaresEventoCtrl', function($scope, ApiFecha, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService, InAppBrowserService, $localstorage) {
+.controller('PilaresEventoCtrl', function($scope, ApiFecha, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService, InAppBrowserService, $localstorage, $filter) {
   $scope.shareFn = SharingService;
   $scope.navigate = MapNavigationService;
   $scope.abrir = InAppBrowserService;
@@ -110,8 +110,17 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
     }
   }
 
+  // En modo WebApp, podemos venir de un bookmark, por lo que no se abrá cargado $rootScope.eventos en 'PilaresCtrl'
+  // así que hay que volver a llamar al API
   if ($rootScope.eventos === undefined) {
-    ApiFecha.fn(diasPilares[$stateParams.dia], 'Fiestas del Pilar').get(function(evento) {
+    var hoy = diasPilares[$stateParams.dia];
+    var programa = 'Fiestas del Pilar';
+    if ($stateParams.dia == undefined) { // si venimos de .state('app.hoy-detalle') -> url: "/hoy/:evento"
+      hoy = $filter('date')(Date.now(), 'yyyy-MM-dd');
+      var isPilares = Date.now() >= new Date(2015, 9, 9) && Date.now() <= new Date(2015, 9, 18); // 9 + 1 = mes 10
+      programa = isPilares ? 'Fiestas del Pilar' : '';
+    }
+    ApiFecha.fn(hoy, programa).get(function(evento) {
       $scope.eventos = evento.results.bindings;
       $rootScope.eventos = evento.results.bindings;
       $scope.evento = $rootScope.eventos[$stateParams.evento]
