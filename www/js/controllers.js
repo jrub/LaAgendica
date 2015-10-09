@@ -501,10 +501,16 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
     };
   })
 
-  .controller('AboutCtrl', function($scope) {
+  .controller('AboutCtrl', function($scope, $ionicPopup) {
     $scope.is_ios = ionic.Platform.isIOS();
     $scope.is_android = ionic.Platform.isAndroid();
     $scope.is_app = ionic.Platform.isWebView();
+    $scope.addToHomeAlert = function() {
+      var alertPopup = $ionicPopup.alert({
+        title: '¡Aún no disponible!',
+        template: '<pre class="evpre" style="text-align:center">Estamos esperando a que Apple apruebe la app. Mientras, si la añades a la pantalla de inicio casi no notarás la diferencia. Dale a </pre> <div class="add-to-homescreen-1"></div> <pre class="evpre" style="text-align:center"> y luego busca "Añadir a pantalla de inicio":</pre> <div class="add-to-homescreen-1 add-to-homescreen-2"></div>'
+      });
+    };
     // makes sure all links to be opened in a new tab (target='_blank') are opened with window.open,
     // which makes it work both as WebApp and native app. Only works without '{{ngVars}}'
     angular.element(document.querySelectorAll("a[target='_blank']")).on("click", (function(e){
