@@ -502,6 +502,9 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   })
 
   .controller('AboutCtrl', function($scope) {
+    $scope.is_ios = ionic.Platform.isIOS();
+    $scope.is_android = ionic.Platform.isAndroid();
+    $scope.is_app = ionic.Platform.isWebView();
     // makes sure all links to be opened in a new tab (target='_blank') are opened with window.open,
     // which makes it work both as WebApp and native app. Only works without '{{ngVars}}'
     angular.element(document.querySelectorAll("a[target='_blank']")).on("click", (function(e){
