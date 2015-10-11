@@ -1,7 +1,7 @@
 <ion-view view-title="Destacados de La Agendica">
   <ion-content>
     <ion-list ng-show="hayEventos">
-      <ion-item class="item-thumbnail-left" ng-repeat="evento in eventos" href="#/app/destacado/{{$index}}">
+      <ion-item class="item-thumbnail-left" collection-repeat="evento in eventos" href="#/app/destacado/{{$index}}">
 
         <img ng-show="evento.image.value !== 'http:'" ng-src="{{evento.image.value}}"/>
         <img class="list-thumb" ng-show="evento.image.value === 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
