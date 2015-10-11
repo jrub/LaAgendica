@@ -160,7 +160,10 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
           console.log(filterText);
         }
       },
-      cancelText: 'Cancelar'
+      cancelText: 'Cancelar',
+      expression: function (filterText, value, index, array) {
+         return value.title.value.toLowerCase().indexOf(filterText.toLowerCase()) !== -1
+      }
     });
   };
 })
