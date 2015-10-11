@@ -14,7 +14,8 @@ angular.module('laAgendica', ['ionic', /*'leaflet-directive',*/ 'laAgendica.cont
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function($stateProvider, $urlRouterProvider, $httpProvider, $ionicFilterBarConfigProvider) {
+  $ionicFilterBarConfigProvider.placeholder('Buscar en esta lista...')
   //Enable cross domain calls
       $httpProvider.defaults.useXDomain = true;
 

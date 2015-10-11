@@ -1,4 +1,4 @@
-angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
+angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', 'jett.ionic.filter.bar'])
 
 .constant("diasPilares", {"Viernes 9":"2015-10-09", "Sábado 10":"2015-10-10", "Domingo 11":"2015-10-11", "Lunes 12":"2015-10-12", "Martes 13":"2015-10-13", "Miércoles 14":"2015-10-14", "Jueves 15":"2015-10-15", "Viernes 16":"2015-10-16", "Sábado 17":"2015-10-17", "Domingo 18":"2015-10-18"})
 
@@ -142,7 +142,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
   });
 })
 
-.controller('HoyCtrl', function($scope, ApiFecha, $rootScope, $filter) {
+.controller('HoyCtrl', function($scope, ApiFecha, $rootScope, $filter, $ionicFilterBar) {
   $scope.textoNoContent = 'Hoy no hay eventos. Parece que hoy es un día para relajarte en casa...'
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
   var hoy = $filter('date')(Date.now(), 'yyyy-MM-dd');
@@ -150,8 +150,19 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize'])
     $scope.eventos = evento.results.bindings;
     $rootScope.eventos = evento.results.bindings;
     $scope.hayEventos = ($scope.eventos.length > 0)
-
   });
+  $scope.showFilterBar = function () {
+    filterBarInstance = $ionicFilterBar.show({
+      items: $scope.eventos,
+      update: function (filteredItems, filterText) {
+        $scope.eventos = filteredItems;
+        if (filterText) {
+          console.log(filterText);
+        }
+      },
+      cancelText: 'Cancelar'
+    });
+  };
 })
 
 .controller('SemanaSantaDiaCtrl', function($scope, ApiSemanaSanta, $stateParams, $state, $location, SharingService) {

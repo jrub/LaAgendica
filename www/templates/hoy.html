@@ -1,4 +1,8 @@
 <ion-view view-title="Eventos de Hoy">
+  <ion-nav-buttons side="secondary">
+    <button class="button button-icon icon ion-ios-search-strong" ng-click="showFilterBar()">
+    </button>
+  </ion-nav-buttons>
   <ion-content>
     <ion-list>
       <ion-item class="item-thumbnail-left" collection-repeat="evento in eventos | orderBy : 'startTime.value'" href="#/app/hoy/{{evento.id.value}}">
