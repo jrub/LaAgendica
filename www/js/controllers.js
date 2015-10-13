@@ -518,11 +518,12 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
   .controller('AboutCtrl', function($scope, $ionicPopup) {
     $scope.is_ios = ionic.Platform.isIOS();
     $scope.is_android = ionic.Platform.isAndroid();
+    $scope.is_wp = ionic.Platform.isWindowsPhone();
     $scope.is_app = ionic.Platform.isWebView();
     $scope.addToHomeAlert = function() {
       var alertPopup = $ionicPopup.alert({
-        title: '¡Aún no disponible!',
-        template: '<pre class="evpre" style="text-align:center">Estamos esperando a que Apple apruebe la app. Mientras, si la añades a la pantalla de inicio casi no notarás la diferencia. Dale a </pre> <div class="add-to-homescreen-1"></div> <pre class="evpre" style="text-align:center"> y luego busca "Añadir a pantalla de inicio":</pre> <div class="add-to-homescreen-1 add-to-homescreen-2"></div>'
+        title: '¡Aún no disponible en Windows Phone!',
+        template: '<pre class="evpre" style="text-align:center">Estamos trabajando para sacar LaAgendica también en Windows Phone. <br> Mientras tanto, pulsa en <strong>Más </strong><img src="https://assets.windowsphone.com/54516450-75a5-40aa-a4eb-8ebd4931d348/basic-icon-ellipses_InvariantCulture_Default.png" alt="Icono de Más"> y, luego, pulsa en <strong>Anclar a Inicio</strong> para tenerla en tu pantalla de inicio como si fuera una app más. <br><br> Ahora mismo no tenemos dispositivos Windows para testear la app, así que si encuentras fallos por favor avísanos en <a href="mailto:info@laAgendica.com?subject=Problema%20en%20Windows%20Phone">info@laAgendica.com</a></pre>'
       });
     };
     // makes sure all links to be opened in a new tab (target='_blank') are opened with window.open,

@@ -3,13 +3,16 @@
         <div class="list card">
             <div class="item item-body">
                 <img class="evimage" src="https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png">
-                <a ng-show="is_ios" ng-hide="is_app" ng-click="addToHomeAlert()">
+                <a ng-show="is_ios" ng-hide="is_app" href="https://itunes.apple.com/es/app/laagendica-agenda-cultural/id1046044148">
                   <img alt="Download on App Store" class="evimage margin-top"
                        src="img/Download_on_the_App_Store_Badge_ES_135x40.svg" />
                 </a>
                 <a ng-show="is_android" ng-hide="is_app" class="col" href="https://play.google.com/store/apps/details?id=com.slothdevs.laagendica">
                   <img alt="Get it on Google Play" class="evimage margin-top"
                        src="https://developer.android.com/images/brand/es_generic_rgb_wo_60.png" />
+                </a>
+                <a ng-show="is_wp" ng-hide="is_app" ng-click="addToHomeAlert()">
+                  <img src="https://cmsresources.windowsphone.com/devcenter/en-us/legacy_v1/img/badgegenerator/Spanish_wstore_rev_cyan_258x67.png" alt="Download from Windows Store" />
                 </a>
                 <pre class="evpre nobottom">
 App inicialmente desarrollada durante el hackaton ZgzAppStore (21-22 de marzo 2015, en el edificio Etopia, Zaragoza).
