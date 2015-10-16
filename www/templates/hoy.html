@@ -9,6 +9,7 @@
         <img ng-show="evento.image" src="http:{{evento.image.value}}"/>
         <img class="list-thumb" ng-hide="evento.image" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
         <h2>{{evento.title.value}}</h2>
+        <h3 class="evpre" ng-show="evento.lugar">{{evento.lugar.value}}</h3>
         <p ng-show="evento.startTime.value">{{evento.startTime.value}} <span ng-show="evento.endTime.value">a</span> {{evento.endTime.value}}</p>
         <p ng-hide="evento.startTime.value">Múltiples horarios</p>
       </ion-item>
