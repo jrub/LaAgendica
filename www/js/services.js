@@ -55,7 +55,7 @@ laAgendicaServices.factory('ApiSparql', function($resource) {
   var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
   var destacadosSPARQL = "PREFIX acto: <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#>\
   PREFIX s: <http://schema.org/>\
-  SELECT DISTINCT ?id ?uri ?title ?startDate ?endDate concat('http:', ?image) as ?image ?description ?latitud ?longitud ?startTime ?endTime ?horario ?precio ?lugar ?direccion \
+  SELECT DISTINCT ?id ?uri ?title ?startDate ?endDate concat('http:', ?image) as ?image ?description ?latitud ?longitud ?startTime ?endTime ?horario ?precio ?lugar ?direccion ?phone \
   WHERE {\
     ?uri a s:Event;\
     dcterms:identifier ?id;\
@@ -71,6 +71,7 @@ laAgendicaServices.factory('ApiSparql', function($resource) {
     OPTIONAL {?uri s:price ?precio.}\
     optional{?uri s:subEvent/s:location/rdfs:label ?lugar.}\
     optional{?uri s:subEvent/s:location/s:streetAddress ?direccion.}\
+    optional{?uri s:subEvent/s:location/s:telephone ?phone.}\
     OPTIONAL {?uri geo:geometry ?geo.\
       ?geo geo:lat ?latitud.\
       ?geo geo:long ?longitud}.\
@@ -106,6 +107,7 @@ laAgendicaServices.factory('ApiFecha', function ($resource) {
                 OPTIONAL{ ?uri s:image ?image}.\
                 optional{?uri s:subEvent/s:location/rdfs:label ?lugar.}\
                 optional{?uri s:subEvent/s:location/s:streetAddress ?direccion.}\
+                optional{?uri s:subEvent/s:location/s:telephone ?phone.}\
                 OPTIONAL {?uri geo:geometry ?geo.\
                 ?geo geo:lat ?latitud.\
                 ?geo geo:long ?longitud.}\
