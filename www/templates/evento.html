@@ -5,12 +5,24 @@
       <div class="item item-avatar item-text-wrap">
         <img src="{{evento.imagen_s}}">
         <h2>{{evento.title}}</h2>
-        <p>Del {{evento.fechaInicio_dt | date:'dd-MMM-yy'}} al {{evento.fechaFinal_dt | date:'dd-MMM-yy'}}</p>
+        <h3 class="evpre" ng-show="evento.nombrelugar_t">{{evento.nombrelugar_t}}</h3>
       </div>
 
       <div class="item item-body">
         <img class="evimage" ng-src="{{evento.imagen_s}}">
-        <pre class="evpre" ng-bind-html="evento.description"></pre>
+        <pre class="evpre" ng-bind-html="evento.descripcion_t"></pre>
+
+        <h3 class="liso">Horario: </h3>
+          <div class="evpre pegado" ng-show="evento.horario_t" ng-bind-html="evento.horario_t"></div>
+          <div class="evpre pegado">Del {{evento.fechaInicio_dt | date:'dd-MMM-yy'}} al {{evento.fechaFinal_dt | date:'dd-MMM-yy'}}</div>
+          <p ng-hide="evento.horario_t">Información no disponible</p>
+        <h3 class="liso">Precio: </h3>
+          <div class="evpre pegado" ng-show="evento.entrada_t" ng-bind-html="evento.entrada_t"></div>
+          <div class="evpre pegado" ng-hide="evento.entrada_t">Información no disponible</div>
+        <h3 class="liso">Dirección: </h3>
+          <div class="evpre pegado" ng-show="evento.nombrelugar_t">{{evento.nombrelugar_t}} <br> {{evento.direccionlugar_t}}</div>
+          <div class="evpre pegado" ng-show="evento.telefonolugar_t">{{evento.telefonolugar_t}}</div>
+          <p ng-hide="evento.nombrelugar_t">Información no disponible</p>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">

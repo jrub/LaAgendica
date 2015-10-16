@@ -252,7 +252,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
                         'wt': 'json',
                         'start': 0,
                         'rows':  100,
-                        'fl': 'uri,title,id,description,fechaInicio_dt,fechaFinal_dt,imagen_s,lugar_t,coordenadas_p_0_coordinate,coordenadas_p_1_coordinate,coordenadas_p',
+                        'fl': 'uri,title,id,descripcion_t,fechaInicio_dt,fechaFinal_dt,imagen_s,lugar_t,coordenadas_p_0_coordinate,coordenadas_p_1_coordinate,coordenadas_p,nombrelugar_t,direccionlugar_t,telefonolugar_t,horario_t,entrada_t',
                         'q': '*:* AND -tipocontenido_s:estatico AND category:Actividades AND fechaInicio_dt:[* TO NOW+7DAY] AND fechaFinal_dt:[NOW+7DAY TO *]',
                         'fq': 'temas_smultiple:(\"' + $stateParams.tipo + '\"),(\"' + tipoCap + '\")'
                     }
@@ -280,7 +280,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
                         'wt': 'json',
                         'start': 0,
                         'rows':  100,
-                        'fl': 'uri,title,id,description,fechaInicio_dt,fechaFinal_dt,imagen_s,lugar_t,coordenadas_p_0_coordinate,coordenadas_p_1_coordinate,coordenadas_p',
+                        'fl': 'uri,title,id,descripcion_t,fechaInicio_dt,fechaFinal_dt,imagen_s,lugar_t,coordenadas_p_0_coordinate,coordenadas_p_1_coordinate,coordenadas_p,nombrelugar_t,direccionlugar_t,telefonolugar_t,horario_t,entrada_t',
                         'q': '*:* AND -tipocontenido_s:estatico AND category:Actividades AND fechaInicio_dt:[* TO NOW+7DAY] AND fechaFinal_dt:[NOW+7DAY TO *]',
                         'fq': 'dirigidoa_smultiple:\"Infancia\"'
                     }
