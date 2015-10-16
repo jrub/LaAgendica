@@ -2,14 +2,17 @@
   <ion-content>
     <div class="list card">
 
-      <div class="item item-avatar item-text-wrap">
-        <img src="{{evento.imagen_s}}">
+      <div class="item item-avatar item-text-wrap item-icon-left energized">
+        <i class="icon ion-star"></i>
         <h2>{{evento.title}}</h2>
         <h3 class="evpre" ng-show="evento.nombrelugar_t">{{evento.nombrelugar_t}}</h3>
       </div>
 
       <div class="item item-body">
-        <img class="evimage" ng-src="{{evento.imagen_s}}">
+        <!-- si es fav, y ha venido de Destacados, y no tiene img, llevará 'http:' y saldrá rota -->
+        <img class="evimage" ng-show="evento.imagen_s && evento.imagen_s !== 'http:'" ng-src="{{evento.imagen_s}}"/>
+        <img class="evimage" ng-show="evento.imagen_s == '' || evento.imagen_s === undefined || evento.imagen_s === 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
+
         <pre class="evpre" ng-bind-html="evento.descripcion_t"></pre>
 
         <h3 class="liso">Horario: </h3>

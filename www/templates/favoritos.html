@@ -2,7 +2,9 @@
   <ion-content>
     <ion-list ng-show="hayEventos">
       <ion-item class="item-thumbnail-left" collection-repeat="evento in eventos" href="#/app/evento/{{$index}}">
-        <img src="{{evento.imagen_s}}">
+        <!-- si es fav, y ha venido de Destacados, y no tiene img, llevará 'http:' y saldrá rota -->
+        <img ng-show="evento.imagen_s && evento.imagen_s !== 'http:'" ng-src="{{evento.imagen_s}}"/>
+        <img class="list-thumb" ng-show="evento.imagen_s == '' || evento.imagen_s === undefined || evento.imagen_s === 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
         <h2>{{evento.title}}</h2>
         <p>Del {{evento.fechaInicio_dt | date:'dd-MMM-yy'}} al {{evento.fechaFinal_dt | date:'dd-MMM-yy'}}</p>
       </ion-item>
