@@ -63,10 +63,6 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
     if (destacado === undefined) {
       return;
     };
-    var imageAux = {};
-    if (destacado && destacado.image && destacado.image.value) {
-      imageAux = destacado.image.value;
-    };
     
     var destacadofav = {
       id : destacado.id.value,
@@ -74,9 +70,14 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
       title : destacado.title.value,
       fechaInicio_dt : destacado.startDate.value,
       fechaFinal_dt : destacado.endDate.value,
-      imagen_s : imageAux,
-      coordenadas_p_0_coordinate: destacado.latitud.value,
-      coordenadas_p_1_coordinate: destacado.longitud.value
+      imagen_s : destacado.image ? destacado.image.value : '',
+      coordenadas_p_0_coordinate: destacado.latitud ? destacado.latitud.value : '',
+      coordenadas_p_1_coordinate: destacado.longitud ? destacado.longitud.value : '',
+      nombrelugar_t: destacado.lugar ? destacado.lugar.value : '',
+      direccionlugar_t: destacado.direccion ? destacado.direccion.value : '',
+      telefonolugar_t: destacado.phone ? destacado.phone.value : '',
+      horario_t: destacado.horario ? destacado.horario.value : '',
+      entrada_t: destacado.precio ? destacado.precio.value : ''
     }
     if ($scope.isFavorito(destacadofav.id)) {
       $localstorage.removeItem(destacadofav.id)
@@ -326,9 +327,14 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
       title : destacado.title.value,
       fechaInicio_dt : destacado.startDate.value,
       fechaFinal_dt : destacado.endDate.value,
-      imagen_s : destacado.image.value,
-      coordenadas_p_0_coordinate: destacado.latitud.value,
-      coordenadas_p_1_coordinate: destacado.longitud.value
+      imagen_s : destacado.image ? destacado.image.value : '',
+      coordenadas_p_0_coordinate: destacado.latitud ? destacado.latitud.value : '',
+      coordenadas_p_1_coordinate: destacado.longitud ? destacado.longitud.value : '',
+      nombrelugar_t: destacado.lugar ? destacado.lugar.value : '',
+      direccionlugar_t: destacado.direccion ? destacado.direccion.value : '',
+      telefonolugar_t: destacado.phone ? destacado.phone.value : '',
+      horario_t: destacado.horario ? destacado.horario.value : '',
+      entrada_t: destacado.precio ? destacado.precio.value : ''
     }
     if ($scope.isFavorito(destacadofav.id)) {
       $localstorage.removeItem(destacadofav.id)
