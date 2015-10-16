@@ -70,7 +70,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
       title : destacado.title.value,
       fechaInicio_dt : destacado.startDate.value,
       fechaFinal_dt : destacado.endDate.value,
-      imagen_s : destacado.image ? destacado.image.value : '',
+      // ApiFecha no concatena 'http:', lo que significa q al template de evento.html pueden llegar imgs sin 'http:' (otros como pilares-evento.html lo meten a mano)
+      imagen_s : destacado.image ? (destacado.image.value.indexOf('http:') === 0 ? destacado.image.value : 'http:' + destacado.image.value) : '',
       coordenadas_p_0_coordinate: destacado.latitud ? destacado.latitud.value : '',
       coordenadas_p_1_coordinate: destacado.longitud ? destacado.longitud.value : '',
       nombrelugar_t: destacado.lugar ? destacado.lugar.value : '',
@@ -327,7 +328,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
       title : destacado.title.value,
       fechaInicio_dt : destacado.startDate.value,
       fechaFinal_dt : destacado.endDate.value,
-      imagen_s : destacado.image ? destacado.image.value : '',
+      // ApiFecha no concatena 'http:', lo que significa q al template de evento.html pueden llegar imgs sin 'http:' (otros como pilares-evento.html lo meten a mano)
+      imagen_s : destacado.image ? (destacado.image.value.indexOf('http:') === 0 ? destacado.image.value : 'http:' + destacado.image.value) : '',
       coordenadas_p_0_coordinate: destacado.latitud ? destacado.latitud.value : '',
       coordenadas_p_1_coordinate: destacado.longitud ? destacado.longitud.value : '',
       nombrelugar_t: destacado.lugar ? destacado.lugar.value : '',
