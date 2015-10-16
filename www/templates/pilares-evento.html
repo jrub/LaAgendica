@@ -6,17 +6,24 @@
         <img ng-show="evento.image" ng-src="http:{{evento.image.value}}">
         <img class="detail-thumb" ng-hide="evento.image" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/favicon-32x32.png'/>
         <h2>{{evento.title.value}}</h2>
-        <p>Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</p>
+        <h3 class="evpre" ng-show="evento.lugar.value">{{evento.lugar.value}}</h3>
       </div>
 
       <div class="item item-body">
         <img class="evimage" ng-show="evento.image" ng-src="http:{{evento.image.value}}"/>
         <img class="evimage" ng-hide="evento.image" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
         <div class="evpre" ng-bind-html="evento.description.value"></div>
-        <strong>Horario: </strong><div class="evpre" ng-show="evento.horario.value" ng-bind-html="evento.horario.value"></div>
-        <p ng-hide="evento.horario.value">Información no disponible</p>
-        <strong>Precio: </strong><div class="evpre" ng-show="evento.precio.value" ng-bind-html="evento.precio.value"></div>
-        <p ng-hide="evento.precio.value">Información no disponible</p>
+        <h3 class="liso">Horario: </h3>
+          <div class="evpre pegado" ng-show="evento.horario.value" ng-bind-html="evento.horario.value"></div>
+          <div class="evpre pegado">Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</div>
+          <p ng-hide="evento.horario.value">Información no disponible</p>
+        <h3 class="liso">Precio: </h3>
+          <div class="evpre pegado" ng-show="evento.precio.value" ng-bind-html="evento.precio.value"></div>
+          <div class="evpre pegado" ng-hide="evento.precio.value">Información no disponible</div>
+        <h3 class="liso">Dirección: </h3>
+          <div class="evpre pegado" ng-show="evento.lugar.value">{{evento.lugar.value}} <br> {{evento.direccion.value}}</div>
+          <div class="evpre pegado" ng-show="evento.direccion.value"></div>
+          <p ng-hide="evento.lugar.value">Información no disponible</p>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
