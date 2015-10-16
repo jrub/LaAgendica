@@ -98,6 +98,8 @@ laAgendicaServices.factory('ApiFecha', function ($resource) {
                 OPTIONAL {?subEvent s:openingHours ?horario.}\
                 OPTIONAL {?uri s:price ?precio.}\
                 OPTIONAL{ ?uri s:image ?image}.\
+                optional{?uri s:subEvent/s:location/rdfs:label ?lugar.}\
+                optional{?uri s:subEvent/s:location/s:streetAddress ?direccion.}\
                 OPTIONAL {?uri geo:geometry ?geo.\
                 ?geo geo:lat ?latitud.\
                 ?geo geo:long ?longitud.}\
