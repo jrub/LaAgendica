@@ -18,6 +18,12 @@
   vertical-align: baseline;
   font-family: "Helvetica Neue", "Roboto", sans-serif;
 }
+.liso {
+  margin-bottom: 4px !important;
+}
+.pegado {
+  margin: 0px !important;
+}
 .nobottom{
   margin-bottom: -10px;
 }
