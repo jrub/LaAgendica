@@ -134,6 +134,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
 })
 
 .controller('DestacadosCtrl', function($scope, ApiSparql, $rootScope) {
+  delete $rootScope.eventos;
+
   $scope.textoNoContent = 'Actualmente no existen eventos destacados'
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
 
@@ -243,7 +245,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
 })
 
 .controller('EventosCtrl', function($scope, $http, $stateParams, $rootScope) {
-  
+  delete $rootScope.eventos;
+
   var tipoCap = $stateParams.tipo.charAt(0).toUpperCase() + $stateParams.tipo.slice(1);
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
   $http({
@@ -273,6 +276,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
 })
 
 .controller('InfantilCtrl', function($scope, $http, $rootScope) {
+  delete $rootScope.eventos;
+
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
   $http({
                     method: 'JSONP',
@@ -298,6 +303,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
 })
 
 .controller('FavoritosCtrl', function($scope, $localstorage, $rootScope) {
+  delete $rootScope.eventos;
+
   $scope.eventos = $localstorage.allObjects()
   $scope.eventos.nav = "Favoritos"
   $rootScope.eventos = $scope.eventos
