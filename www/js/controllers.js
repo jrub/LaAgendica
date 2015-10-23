@@ -55,6 +55,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
 })
 
 .controller('PilaresEventoCtrl', function($scope, ApiFecha, $stateParams, $rootScope, diasPilares, SharingService, MapNavigationService, InAppBrowserService, $localstorage, $filter) {
+  delete $rootScope.eventos;
+
   $scope.shareFn = SharingService;
   $scope.navigate = MapNavigationService;
   $scope.abrir = InAppBrowserService;
