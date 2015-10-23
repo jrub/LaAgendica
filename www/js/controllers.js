@@ -122,7 +122,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
       var isPilares = Date.now() >= new Date(2015, 9, 9) && Date.now() <= new Date(2015, 9, 18); // 9 + 1 = mes 10
       programa = isPilares ? 'Fiestas del Pilar' : '';
     }
-    ApiFecha.fn(hoy, programa).get(function(evento) {
+    ApiFecha.fn(hoy, programa, !isPilares).get(function(evento) {
       $scope.eventos = evento.results.bindings;
       $rootScope.eventos = evento.results.bindings;
       $scope.evento = $rootScope.eventos[$stateParams.evento]
