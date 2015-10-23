@@ -97,19 +97,10 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
     return fav.id === eventoId
   }
 
-  var eventoId = $stateParams.evento;
-
   var procesarEventos = function() {
-    var evento;
-    for (var i = 0; i < $rootScope.eventos.length; i++) {
-      if (eventoId === $rootScope.eventos[i].id.value) {
-        evento = $rootScope.eventos[i];
-        break;
-      };
-    }
-    $scope.evento = evento;
+    $scope.evento = $rootScope.eventos.filter(function(obj) { return obj.id.value === $stateParams.evento})[0];
 
-    if ($scope.isFavorito(evento.id.value)) {
+    if ($scope.isFavorito($scope.evento.id.value)) {
       $scope.evento.fav = true // para pintar el boton fav activo
     }
   }
@@ -127,7 +118,6 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
     ApiFecha.fn(hoy, programa, !isPilares).get(function(evento) {
       $scope.eventos = evento.results.bindings;
       $rootScope.eventos = evento.results.bindings;
-      $scope.evento = $rootScope.eventos[$stateParams.evento]
       procesarEventos();
     });
   } else {
