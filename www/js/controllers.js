@@ -150,7 +150,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
   $scope.textoNoContent = 'Hoy no hay eventos. Parece que hoy es un día para relajarte en casa...'
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
   var hoy = $filter('date')(Date.now(), 'yyyy-MM-dd');
-  ApiFecha.fn(hoy, null).get(function(evento) {
+  ApiFecha.fn(hoy, null, true).get(function(evento) {
     $scope.eventos = evento.results.bindings;
     $rootScope.eventos = evento.results.bindings;
     $scope.hayEventos = ($scope.eventos.length > 0)

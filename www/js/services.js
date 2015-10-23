@@ -83,13 +83,21 @@ laAgendicaServices.factory('ApiSparql', function($resource) {
 
 laAgendicaServices.factory('ApiFecha', function ($resource) {
     return { 
-        fn: function(dateStr, filterStr) { 
+        fn: function(dateStr, filterStr, exclusive) {
+            exclusive = typeof exclusive !== 'undefined' ? exclusive : false;
             var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
 
             var filtroPrograma = "";
             if (filterStr && (filterStr !== "")) {
               filtroPrograma = "?uri <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#programa> ?programa. FILTER (REGEX(STR(?programa), '"+ filterStr +"', 'i'))";
             };
+
+            var leftCmp = '<';
+            var rightCmp = '>';
+            if (exclusive) {
+              leftCmp = '';
+              rightCmp = '';
+            }
 
             var query = "SELECT DISTINCT *\
               WHERE {\
@@ -111,7 +119,7 @@ laAgendicaServices.factory('ApiFecha', function ($resource) {
                 OPTIONAL {?uri geo:geometry ?geo.\
                 ?geo geo:lat ?latitud.\
                 ?geo geo:long ?longitud.}\
-                FILTER (xsd:date(?startDate) <= '"+ dateStr +"'^^xsd:date and xsd:date(?endDate) >= '"+ dateStr +"'^^xsd:date) "+ filtroPrograma +"}";
+                FILTER (xsd:date(?startDate)" + leftCmp + "= '"+ dateStr +"'^^xsd:date and xsd:date(?endDate)" + rightCmp + "= '"+ dateStr +"'^^xsd:date) "+ filtroPrograma +"}";
 
             return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
         }
