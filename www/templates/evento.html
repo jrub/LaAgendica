@@ -35,7 +35,8 @@
             Favorito
         </a>
         <a class="tab-item" ng-click="shareFn('Echa un vistazo a este evento que encontré en @LaAgendica #Zaragoza #LaAgendica', evento.uri)">
-          <i class="icon ion-share"></i>
+          <i ng-show="platform != 'ios'" class="icon ion-android-share-alt"></i>
+          <i ng-show="platform == 'ios'" class="icon ion-ios-upload-outline"></i>
           Compartir
         </a>
         <a class="tab-item" ng-click="abrir(evento.uri)">

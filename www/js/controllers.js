@@ -28,7 +28,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
 })
 
 .controller('AppCtrl', function($scope, $ionicModal, $timeout, $localstorage, $state, $ionicPopup) {
-
+  $scope.platform = ionic.Platform.platform();
   $scope.openMap = function() {
     if (hasToOpenMap()) {
       $state.go('app.map');
@@ -524,9 +524,6 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
   })
 
   .controller('AboutCtrl', function($scope, $ionicPopup) {
-    $scope.is_ios = ionic.Platform.isIOS();
-    $scope.is_android = ionic.Platform.isAndroid();
-    $scope.is_wp = ionic.Platform.isWindowsPhone();
     $scope.is_app = ionic.Platform.isWebView();
     $scope.addToHomeAlert = function() {
       var alertPopup = $ionicPopup.alert({
