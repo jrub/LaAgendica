@@ -52,7 +52,8 @@ laAgendicaServices.factory('ApiSemanaSanta', function($resource) {
 });
 
 laAgendicaServices.factory('ApiSparql', function($resource, $filter) {
-  var dateStr = $filter('date')(Date.now(), 'yyyy-MM-dd');
+  var today = $filter('date')(Date.now(), 'yyyy-MM-dd');
+  var on10days = $filter('date')(Date.now() + 1000 * 60 * 60 * 24 *10, 'yyyy-MM-dd');
   var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
   var destacadosSPARQL = "PREFIX acto: <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#>\
   PREFIX s: <http://schema.org/>\
@@ -79,7 +80,7 @@ laAgendicaServices.factory('ApiSparql', function($resource, $filter) {
     }\
     ?uri acto:destacada \"true\".\
     ?uri <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#diasParaTerminar> ?diasParaTerminar.\
-    FILTER (xsd:date(?startDate) <= '"+ dateStr +"'^^xsd:date and xsd:date(?endDate) >= '"+ dateStr +"'^^xsd:date)\
+    FILTER (xsd:date(?startDate) <= '"+ on10days +"'^^xsd:date and xsd:date(?endDate) >= '"+ today +"'^^xsd:date)\
   }\
   ORDER BY (?endDate)";
 
