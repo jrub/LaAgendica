@@ -534,7 +534,6 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
     // makes sure all links to be opened in a new tab (target='_blank') are opened with window.open,
     // which makes it work both as WebApp and native app. Only works without '{{ngVars}}'
     angular.element(document.querySelectorAll("a[target='_blank']")).on("click", (function(e){
-      alert("open mio");
       e.preventDefault();
       window.open(e.currentTarget.href, '_system', 'location=yes');
     }));
