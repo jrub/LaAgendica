@@ -1,5 +1,11 @@
+/* template detalle: vista tablet */
 .first {
   order: 1;
+  max-width: 55%;
+  min-height: 240px;
+  margin: auto;
+  padding-bottom: 16px;
+  padding-left: 16px;
 }
 .second {
   order: 2;
@@ -9,17 +15,18 @@
   display: flex;
   flex-flow: row wrap;
 }
-/*  Smaller than landscape tablet */
-@media (max-width: 1023px) {
+/*  vista movil */
+@media (max-width: 567px) {
   .first {
-    order: 2; }
+    order: 2;
+    max-width: 100%;
+    margin: 0; }
   .second {
     order: 1; } }
 .evimage {
-  max-width: 100%;
-  min-width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+  max-height: 300px;
+  max-width: 280px;
+  margin: auto;
   display: block; }
 .margin-top {
   margin-top: 20px;
