@@ -9,18 +9,15 @@
         <h3 class="evpre" ng-show="evento.lugar.value">{{evento.lugar.value}}</h3>
       </div>
 
-      <div class="row responsive-md item item-body">
-        <div class="col col-33 first">
-          <img class="evimage" ng-show="evento.image" ng-src="http:{{evento.image.value}}"/>
-          <img class="evimage" ng-hide="evento.image" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
-        </div>
-        <div class="col second">
+      <div class="detalle item item-body">
+        <img class="evimage" ng-show="evento.image" ng-src="http:{{evento.image.value}}"/>
+        <img class="evimage" ng-hide="evento.image" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
+
+        <div class="second">
           <div class="evpre" ng-bind-html="evento.description.value"></div>
         </div>
-        </div>
 
-        <div class="row item item-body">
-        <div class="col">
+        <div class="first">
           <h3 class="liso">Horario: </h3>
             <div class="evpre pegado" ng-show="evento.horario.value" ng-bind-html="evento.horario.value"></div>
             <div class="evpre pegado">Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</div>

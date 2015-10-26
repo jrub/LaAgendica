@@ -3,7 +3,18 @@
 }
 .second {
   order: 2;
+  min-width: 66%;
 }
+.detalle {
+  display: flex;
+  flex-flow: row wrap;
+}
+/*  Smaller than landscape tablet */
+@media (max-width: 1023px) {
+  .first {
+    order: 2; }
+  .second {
+    order: 1; } }
 .evimage {
   max-width: 100%;
   min-width: 50%;
