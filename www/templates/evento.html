@@ -8,13 +8,16 @@
         <h3 class="evpre" ng-show="evento.nombrelugar_t">{{evento.nombrelugar_t}}</h3>
       </div>
 
-      <div class="item item-body">
+      <div class="detalle item item-body">
         <!-- si es fav, y ha venido de Destacados, y no tiene img, llevará 'http:' y saldrá rota -->
         <img class="evimage" ng-show="evento.imagen_s && evento.imagen_s !== 'http:'" ng-src="{{evento.imagen_s}}"/>
         <img class="evimage" ng-show="evento.imagen_s == '' || evento.imagen_s === undefined || evento.imagen_s === 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
 
-        <pre class="evpre" ng-bind-html="evento.descripcion_t"></pre>
+        <div class="second">
+          <div class="evpre" ng-bind-html="evento.descripcion_t"></div>
+        </div>
 
+        <div class="first">
         <h3 class="liso">Horario: </h3>
           <div class="evpre pegado" ng-show="evento.horario_t" ng-bind-html="evento.horario_t"></div>
           <div class="evpre pegado" ng-hide="evento.horario_t">Horario no disponible</div>
@@ -27,6 +30,7 @@
           <div class="evpre pegado" ng-show="evento.nombrelugar_t">{{evento.nombrelugar_t}} <br> {{evento.direccionlugar_t}}</div>
           <div class="evpre pegado" ng-show="evento.telefonolugar_t">{{evento.telefonolugar_t}}</div>
           <div class="evpre pegado" ng-hide="evento.nombrelugar_t">Lugar no disponible</div>
+        </div>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">

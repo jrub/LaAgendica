@@ -8,13 +8,15 @@
         <h3 class="evpre" ng-show="evento.lugar.value">{{evento.lugar.value}}</h3>
       </div>
 
-      <div class="item item-body">
-
+      <div class="detalle item item-body">
         <img class="evimage" ng-show="evento.image.value !== 'http:'" ng-src="{{evento.image.value}}"/>
         <img class="evimage" ng-show="evento.image.value === 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
 
-        <div class="evpre" ng-bind-html="evento.description.value"></div>
+        <div class="second">
+          <div class="evpre" ng-bind-html="evento.description.value"></div>
+        </div>
 
+        <div class="first">
         <h3 class="liso">Horario: </h3>
           <div class="evpre pegado" ng-show="evento.horario.value" ng-bind-html="evento.horario.value"></div>
           <div class="evpre pegado" ng-hide="evento.horario.value">Horario no disponible</div>
@@ -27,6 +29,7 @@
           <div class="evpre pegado" ng-show="evento.lugar.value">{{evento.lugar.value}} <br> {{evento.direccion.value}}</div>
           <div class="evpre pegado" ng-show="evento.phone.value">{{evento.phone.value}}</div>
           <div class="evpre pegado" ng-hide="evento.lugar.value">Lugar no disponible</div>
+        </div>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
