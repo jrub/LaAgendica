@@ -17,8 +17,9 @@
 
         <h3 class="liso">Horario: </h3>
           <div class="evpre pegado" ng-show="evento.horario.value" ng-bind-html="evento.horario.value"></div>
-          <div class="evpre pegado">Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</div>
-          <p ng-hide="evento.horario.value">Información no disponible</p>
+          <p ng-hide="evento.horario.value">Horario no disponible</p>
+          <div ng-show="evento.startDate.value != evento.endDate.value" class="evpre pegado">Desde: {{evento.startDate.value | date:'fullDate'}} <br>Hasta: {{evento.endDate.value | date:'fullDate'}}</div>
+          <div ng-show="evento.startDate.value == evento.endDate.value" class="evpre pegado">El {{evento.startDate.value | date:'fullDate'}}</div>
         <h3 class="liso">Precio: </h3>
           <div class="evpre pegado" ng-show="evento.precio.value" ng-bind-html="evento.precio.value"></div>
           <div class="evpre pegado" ng-hide="evento.precio.value">Información no disponible</div>
