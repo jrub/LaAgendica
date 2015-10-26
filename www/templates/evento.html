@@ -17,16 +17,16 @@
 
         <h3 class="liso">Horario: </h3>
           <div class="evpre pegado" ng-show="evento.horario_t" ng-bind-html="evento.horario_t"></div>
-          <p ng-hide="evento.horario_t">Horario no disponible</p>
+          <div class="evpre pegado" ng-hide="evento.horario_t">Horario no disponible</div>
           <div ng-show="evento.fechaInicio_dt != evento.fechaFinal_dt" class="evpre pegado">Desde: {{evento.fechaInicio_dt | date:'fullDate'}} <br>Hasta: {{evento.fechaFinal_dt | date:'fullDate'}}</div>
           <div ng-show="evento.fechaInicio_dt == evento.fechaFinal_dt" class="evpre pegado">El {{evento.fechaInicio_dt | date:'fullDate'}}</div>
         <h3 class="liso">Precio: </h3>
           <div class="evpre pegado" ng-show="evento.entrada_t" ng-bind-html="evento.entrada_t"></div>
-          <div class="evpre pegado" ng-hide="evento.entrada_t">Información no disponible</div>
+          <div class="evpre pegado" ng-hide="evento.entrada_t">Precio no disponible</div>
         <h3 class="liso">Dirección: </h3>
           <div class="evpre pegado" ng-show="evento.nombrelugar_t">{{evento.nombrelugar_t}} <br> {{evento.direccionlugar_t}}</div>
           <div class="evpre pegado" ng-show="evento.telefonolugar_t">{{evento.telefonolugar_t}}</div>
-          <p ng-hide="evento.nombrelugar_t">Información no disponible</p>
+          <div class="evpre pegado" ng-hide="evento.nombrelugar_t">Lugar no disponible</div>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
