@@ -1,4 +1,9 @@
-/* Empty. Add your own CSS if you like */
+.first {
+  order: 1;
+}
+.second {
+  order: 2;
+}
 .evimage {
   max-width: 100%;
   min-width: 50%;

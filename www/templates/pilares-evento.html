@@ -9,21 +9,30 @@
         <h3 class="evpre" ng-show="evento.lugar.value">{{evento.lugar.value}}</h3>
       </div>
 
-      <div class="item item-body">
-        <img class="evimage" ng-show="evento.image" ng-src="http:{{evento.image.value}}"/>
-        <img class="evimage" ng-hide="evento.image" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
-        <div class="evpre" ng-bind-html="evento.description.value"></div>
-        <h3 class="liso">Horario: </h3>
-          <div class="evpre pegado" ng-show="evento.horario.value" ng-bind-html="evento.horario.value"></div>
-          <div class="evpre pegado">Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</div>
-          <p ng-hide="evento.horario.value">Información no disponible</p>
-        <h3 class="liso">Precio: </h3>
-          <div class="evpre pegado" ng-show="evento.precio.value" ng-bind-html="evento.precio.value"></div>
-          <div class="evpre pegado" ng-hide="evento.precio.value">Información no disponible</div>
-        <h3 class="liso">Dirección: </h3>
-          <div class="evpre pegado" ng-show="evento.lugar.value">{{evento.lugar.value}} <br> {{evento.direccion.value}}</div>
-          <div class="evpre pegado" ng-show="evento.phone.value">{{evento.phone.value}}</div>
-          <p ng-hide="evento.lugar.value">Información no disponible</p>
+      <div class="row responsive-md item item-body">
+        <div class="col col-33 first">
+          <img class="evimage" ng-show="evento.image" ng-src="http:{{evento.image.value}}"/>
+          <img class="evimage" ng-hide="evento.image" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
+        </div>
+        <div class="col second">
+          <div class="evpre" ng-bind-html="evento.description.value"></div>
+        </div>
+        </div>
+
+        <div class="row item item-body">
+        <div class="col">
+          <h3 class="liso">Horario: </h3>
+            <div class="evpre pegado" ng-show="evento.horario.value" ng-bind-html="evento.horario.value"></div>
+            <div class="evpre pegado">Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</div>
+            <p ng-hide="evento.horario.value">Información no disponible</p>
+          <h3 class="liso">Precio: </h3>
+            <div class="evpre pegado" ng-show="evento.precio.value" ng-bind-html="evento.precio.value"></div>
+            <div class="evpre pegado" ng-hide="evento.precio.value">Información no disponible</div>
+          <h3 class="liso">Dirección: </h3>
+            <div class="evpre pegado" ng-show="evento.lugar.value">{{evento.lugar.value}} <br> {{evento.direccion.value}}</div>
+            <div class="evpre pegado" ng-show="evento.phone.value">{{evento.phone.value}}</div>
+            <p ng-hide="evento.lugar.value">Información no disponible</p>
+        </div>
       </div>
 
       <div class="item tabs tabs-secondary tabs-icon-left">
