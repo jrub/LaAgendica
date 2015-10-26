@@ -8,7 +8,10 @@
 
         <h2>{{evento.title.value}}</h2>
         <h3 class="evpre" ng-show="evento.lugar">{{evento.lugar.value}}</h3>
-        <p>Hasta el {{evento.endDate.value | date:'longDate'}}</p>
+        <div ng-show="evento.startDate.value != evento.endDate.value && evento.startDate.value > today" class="evpre pegado">Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</div>
+        <div ng-show="evento.startDate.value != evento.endDate.value && evento.startDate.value < today" class="evpre pegado">Hasta el {{evento.endDate.value | date:'longDate'}}</div>
+        <div ng-show="evento.startDate.value == evento.endDate.value" class="evpre pegado">El {{evento.startDate.value | date:'fullDate'}}</div>
+
       </ion-item>
     </ion-list>
     <div class="list card" ng-hide="hayEventos" style="text-align:center">

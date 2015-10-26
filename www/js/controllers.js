@@ -125,11 +125,12 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
   }
 })
 
-.controller('DestacadosCtrl', function($scope, ApiSparql, $rootScope) {
+.controller('DestacadosCtrl', function($scope, ApiSparql, $rootScope, $filter) {
   delete $rootScope.eventos;
 
   $scope.textoNoContent = 'Actualmente no existen eventos destacados'
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
+  $scope.today = $filter('date')(Date.now(), 'yyyy-MM-dd');
 
   $scope.destacados = ApiSparql.get(function(evento) {
     $scope.eventos = evento.results.bindings;
