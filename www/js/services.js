@@ -51,7 +51,8 @@ laAgendicaServices.factory('ApiSemanaSanta', function($resource) {
   return $resource('semana-santa-2015.json');
 });
 
-laAgendicaServices.factory('ApiSparql', function($resource) {
+laAgendicaServices.factory('ApiSparql', function($resource, $filter) {
+  var dateStr = $filter('date')(Date.now(), 'yyyy-MM-dd');
   var SPARQL_ENDPOINT = 'http://datos.zaragoza.es/sparql';
   var destacadosSPARQL = "PREFIX acto: <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#>\
   PREFIX s: <http://schema.org/>\
@@ -74,9 +75,13 @@ laAgendicaServices.factory('ApiSparql', function($resource) {
     optional{?uri s:subEvent/s:location/s:telephone ?phone.}\
     OPTIONAL {?uri geo:geometry ?geo.\
       ?geo geo:lat ?latitud.\
-      ?geo geo:long ?longitud}.\
+      ?geo geo:long ?longitud.\
+    }\
     ?uri acto:destacada \"true\".\
-  } LIMIT 50";
+    ?uri <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#diasParaTerminar> ?diasParaTerminar.\
+    FILTER (xsd:date(?startDate) <= '"+ dateStr +"'^^xsd:date and xsd:date(?endDate) >= '"+ dateStr +"'^^xsd:date)\
+  }\
+  ORDER BY (?endDate)";
 
   return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(destacadosSPARQL) + '&format=application%2Fsparql-results%2Bjson&timeout=0');
 });
@@ -117,9 +122,11 @@ laAgendicaServices.factory('ApiFecha', function ($resource) {
                 optional{?uri s:subEvent/s:location/s:streetAddress ?direccion.}\
                 optional{?uri s:subEvent/s:location/s:telephone ?phone.}\
                 OPTIONAL {?uri geo:geometry ?geo.\
-                ?geo geo:lat ?latitud.\
-                ?geo geo:long ?longitud.}\
-                FILTER (xsd:date(?startDate)" + leftCmp + "= '"+ dateStr +"'^^xsd:date and xsd:date(?endDate)" + rightCmp + "= '"+ dateStr +"'^^xsd:date) "+ filtroPrograma +"}";
+                  ?geo geo:lat ?latitud.\
+                  ?geo geo:long ?longitud.\
+                }\
+                FILTER (xsd:date(?startDate)" + leftCmp + "= '"+ dateStr +"'^^xsd:date and xsd:date(?endDate)" + rightCmp + "= '"+ dateStr +"'^^xsd:date) "+ filtroPrograma 
+              + "}";
 
             return $resource(SPARQL_ENDPOINT + '?query=' + encodeURIComponent(query) + '&format=application%2Fsparql-results%2Bjson&timeout=0')
         }
