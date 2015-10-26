@@ -7,7 +7,7 @@
         <img class="list-thumb" ng-show="evento.imagen_s == '' || evento.imagen_s === undefined || evento.imagen_s === 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
         <h2>{{evento.title}}</h2>
         <h3 class="evpre" ng-show="evento.nombrelugar_t">{{evento.nombrelugar_t}}</h3>
-        <p>Del {{evento.fechaInicio_dt | date:'dd-MMM-yy'}} al {{evento.fechaFinal_dt | date:'dd-MMM-yy'}}</p>
+        <p>Hasta el {{evento.fechaFinal_dt | date:'longDate'}}</p>
       </ion-item>
     </ion-list>
     <div class="list card" ng-hide="hayEventos" style="text-align:center">

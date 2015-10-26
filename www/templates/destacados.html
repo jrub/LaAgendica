@@ -8,7 +8,7 @@
 
         <h2>{{evento.title.value}}</h2>
         <h3 class="evpre" ng-show="evento.lugar">{{evento.lugar.value}}</h3>
-        <p>Del {{evento.startDate.value | date:'dd-MMM-yy'}} al {{evento.endDate.value | date:'dd-MMM-yy'}}</p>
+        <p>Hasta el {{evento.endDate.value | date:'longDate'}}</p>
       </ion-item>
     </ion-list>
     <div class="list card" ng-hide="hayEventos" style="text-align:center">
