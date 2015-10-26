@@ -15,6 +15,10 @@
   display: flex;
   flex-flow: row wrap;
 }
+/* tablet vertical */
+@media (max-width: 1023px) {
+  .first {
+    max-width: 44%; } }
 /*  vista movil */
 @media (max-width: 567px) {
   .first {
