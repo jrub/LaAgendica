@@ -261,15 +261,13 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
                         'fq': 'temas_smultiple:(\"' + $stateParams.tipo + '\"),(\"' + tipoCap + '\")'
                     }
                 }).success(function(data, status, headers, config) {
-                    
                     $scope.eventos = data.response.docs
                     $scope.eventos.nav = tipoCap
                     $rootScope.eventos = data.response.docs
                     $scope.hayEventos = ($scope.eventos.length > 0)
                     $scope.textoNoContent = 'Actualmente no existen eventos para esta sección'
-
                 }).error(function(data, status, headers, config) {
-                    
+                    $scope.textoNoContent = 'Lo sentimos, uno de los servicios del Ayuntamiento que publica los datos no está funcionando en este momento. Inténtalo de nuevo más tarde.'
                 });
 
 })
@@ -291,13 +289,13 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
                         'fq': 'dirigidoa_smultiple:\"Infancia\"'
                     }
                 }).success(function(data, status, headers, config) {
-                    
                     $scope.eventos = data.response.docs
                     $scope.eventos.nav = "Infantil"
                     $rootScope.eventos = data.response.docs
                     $scope.hayEventos = ($scope.eventos.length > 0)
+                    $scope.textoNoContent = 'Actualmente no existen eventos para esta sección'
                 }).error(function(data, status, headers, config) {
-                    
+                    $scope.textoNoContent = 'Lo sentimos, uno de los servicios del Ayuntamiento que publica los datos no está funcionando en este momento. Inténtalo de nuevo más tarde.'
                 });
 })
 
