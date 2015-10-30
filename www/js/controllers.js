@@ -19,7 +19,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
 })
 .run(function($rootScope, $ionicLoading) {
   $rootScope.$on('loading:show', function() {
-    $ionicLoading.show({template: '<p>Cargando...</p><ion-spinner></ion-spinner>'})
+    $ionicLoading.show({template: '<p>Cargando...</p><ion-spinner icon="lines" class="spinner-positive"></ion-spinner>'})
   })
 
   $rootScope.$on('loading:hide', function() {
