@@ -4,7 +4,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
 
 // añade spinner 'loading' http://learn.ionicframework.com/formulas/loading-screen-with-interceptors/
 .config(function($httpProvider) {
-  $httpProvider.interceptors.push(function($rootScope) {
+  $httpProvider.interceptors.push(function($rootScope, $q) {
     return {
       request: function(config) {
         $rootScope.$broadcast('loading:show')
@@ -13,6 +13,10 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
       response: function(response) {
         $rootScope.$broadcast('loading:hide')
         return response
+      },
+      responseError: function(rejection) {
+        $rootScope.$broadcast('loading:hide')
+      return $q.reject(rejection);
       }
     }
   })
