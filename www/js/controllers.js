@@ -143,6 +143,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
     $rootScope.eventos = evento.results.bindings;
     $scope.hayEventos = ($scope.eventos.length > 0)
     }, function(error) {
+      $scope.hayEventos = false
       $scope.textoNoContent = 'Lo sentimos, uno de los servicios del Ayuntamiento que publica los datos no está funcionando en este momento. Inténtalo de nuevo más tarde.'
   });
 })
@@ -156,6 +157,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
     $rootScope.eventos = evento.results.bindings;
     $scope.hayEventos = ($scope.eventos.length > 0)
     }, function(error) {
+      $scope.hayEventos = false
       $scope.textoNoContent = 'Lo sentimos, uno de los servicios del Ayuntamiento que publica los datos no está funcionando en este momento. Inténtalo de nuevo más tarde.'
     });
   $scope.showFilterBar = function () {
@@ -271,6 +273,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
                     $scope.hayEventos = ($scope.eventos.length > 0)
                     $scope.textoNoContent = 'Actualmente no existen eventos para esta sección'
                 }).error(function(data, status, headers, config) {
+                    $scope.hayEventos = false
                     $scope.textoNoContent = 'Lo sentimos, uno de los servicios del Ayuntamiento que publica los datos no está funcionando en este momento. Inténtalo de nuevo más tarde.'
                 });
 
@@ -299,6 +302,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
                     $scope.hayEventos = ($scope.eventos.length > 0)
                     $scope.textoNoContent = 'Actualmente no existen eventos para esta sección'
                 }).error(function(data, status, headers, config) {
+                    $scope.hayEventos = false
                     $scope.textoNoContent = 'Lo sentimos, uno de los servicios del Ayuntamiento que publica los datos no está funcionando en este momento. Inténtalo de nuevo más tarde.'
                 });
 })
