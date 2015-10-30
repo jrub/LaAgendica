@@ -71,15 +71,15 @@ laAgendicaServices.factory('ApiSparql', function($resource, $filter) {
     OPTIONAL {?subEvent s:endTime ?endTime.}\
     OPTIONAL {?subEvent s:openingHours ?horario.}\
     OPTIONAL {?uri s:price ?precio.}\
-    optional{?uri s:subEvent/s:location/rdfs:label ?lugar.}\
-    optional{?uri s:subEvent/s:location/s:streetAddress ?direccion.}\
-    optional{?uri s:subEvent/s:location/s:telephone ?phone.}\
+    optional {?subEvent s:location ?loc}\
+    optional {?loc rdfs:label ?lugar.}\
+    optional {?loc s:streetAddress ?direccion.}\
+    optional {?loc s:telephone ?phone.}\
     OPTIONAL {?uri geo:geometry ?geo.\
       ?geo geo:lat ?latitud.\
       ?geo geo:long ?longitud.\
     }\
     ?uri acto:destacada \"true\".\
-    ?uri <http://vocab.linkeddata.es/datosabiertos/def/cultura-ocio/agenda#diasParaTerminar> ?diasParaTerminar.\
     FILTER (xsd:date(?startDate) <= '"+ on10days +"'^^xsd:date and xsd:date(?endDate) >= '"+ today +"'^^xsd:date)\
   }\
   ORDER BY (?endDate)";
@@ -119,9 +119,10 @@ laAgendicaServices.factory('ApiFecha', function ($resource) {
                 OPTIONAL {?subEvent s:openingHours ?horario.}\
                 OPTIONAL {?uri s:price ?precio.}\
                 OPTIONAL{ ?uri s:image ?image}.\
-                optional{?uri s:subEvent/s:location/rdfs:label ?lugar.}\
-                optional{?uri s:subEvent/s:location/s:streetAddress ?direccion.}\
-                optional{?uri s:subEvent/s:location/s:telephone ?phone.}\
+                optional {?subEvent s:location ?loc}\
+                optional {?loc rdfs:label ?lugar.}\
+                optional {?loc s:streetAddress ?direccion.}\
+                optional {?loc s:telephone ?phone.}\
                 OPTIONAL {?uri geo:geometry ?geo.\
                   ?geo geo:lat ?latitud.\
                   ?geo geo:long ?longitud.\
