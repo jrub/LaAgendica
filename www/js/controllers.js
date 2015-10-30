@@ -119,6 +119,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
       $scope.eventos = evento.results.bindings;
       $rootScope.eventos = evento.results.bindings;
       procesarEventos();
+    }, function(error) {
+      $scope.textoNoContent = 'Lo sentimos, uno de los servicios del Ayuntamiento que publica los datos no está funcionando en este momento. Inténtalo de nuevo más tarde.'
     });
   } else {
     procesarEventos();
@@ -136,6 +138,8 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
     $scope.eventos = evento.results.bindings;
     $rootScope.eventos = evento.results.bindings;
     $scope.hayEventos = ($scope.eventos.length > 0)
+    }, function(error) {
+      $scope.textoNoContent = 'Lo sentimos, uno de los servicios del Ayuntamiento que publica los datos no está funcionando en este momento. Inténtalo de nuevo más tarde.'
   });
 })
 
@@ -147,7 +151,9 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
     $scope.eventos = evento.results.bindings;
     $rootScope.eventos = evento.results.bindings;
     $scope.hayEventos = ($scope.eventos.length > 0)
-  });
+    }, function(error) {
+      $scope.textoNoContent = 'Lo sentimos, uno de los servicios del Ayuntamiento que publica los datos no está funcionando en este momento. Inténtalo de nuevo más tarde.'
+    });
   $scope.showFilterBar = function () {
     filterBarInstance = $ionicFilterBar.show({
       items: $scope.eventos,
