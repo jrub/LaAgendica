@@ -2,19 +2,21 @@ App desarrollada en [Ionic](http://ionicframework.com/) para la consulta y descu
 
 - Desplegada en github-pages como WebApp: www.LaAgendica.com
 - Link Google Play: https://play.google.com/store/apps/details?id=com.slothdevs.laagendica
-- Link Apple Store: (en proceso de revisión para aprobación)
+- Link Apple Store: https://itunes.apple.com/es/app/laagendica-agenda-cultural/id1046044148
+
+La Agendica es un proyecto sin ánimo de lucro. Si te resulta útil, puedes apoyarnos dejando un review positivo en Google Play/App Store. ¡Gracias!
 
 ## Descripción de funcionalidades
 
 - Muestra los eventos que suceden Hoy en Zaragoza, ordenados por hora del día (sección "Qué hacer hoy" del menú lateral).
 - Muestra los eventos de la siguiente semana, clasificados por categorías en el menú lateral (las categorías actuales son: exposiciones y museos, tecnología, teatro, infantil, - música, gastronomía, danzas y bailes, medio ambiente y deportes)
-- Muestra todos los eventos de los Pilares 2015, clasificados por día, y ordenados por hora del día (la cual además se muestra en la lista).
-- Muestra los eventos destacados marcados como tal por el Ayuntamiento (sección "Destacados").
-- En los detalles de un evento, muestra las fechas, descripción, horario y precio (si los hubiera), así como la imagen asignada al evento (si existe), y permite realizar 4 acciones, descritas a continuación:
-  - Permite guardar un evento como Favorito. Los eventos favoritos se pueden consultar en una sección específica en el menú lateral.
-  - Permite Compartir en redes sociales. Utiliza los menús nativos de iOS y Android, por lo que permite compartir en cualquier red social o App que tenga instalada el usuario en su dispositivo, por ejemplo Whatsapp, Telegram, Twitter, Facebook... * En el caso de la WebApp, esta funcionalidad de compartir está limitada a compartir en Twitter (por ahora).
-  - Permite abrir la web original del evento en la web oficial del ayuntamiento.
-  - Si los datos proporcionados por el Ayuntamiento incluyen la geolocalización del evento, permite mostrar la ruta para ir andando, en coche, o en transporte público, desde la - geolocalización actual del dispositivo hasta el lugar donde ocurre el evento, usando  la App nativa de mapas del dispositivo (como Google Maps y Apple Maps).  * En el caso de la WebApp, la ruta se muestra en el navegador web del dispositivo, mediante Google Maps.
+- Muestra todos los eventos de los Pilares 2015 (desactivado tras los Pilares), clasificados por día, y ordenados por hora del día (la cual además se muestra en la lista).
+- Muestra los eventos destacados marcados como tal por el Ayuntamiento (sección "Destacados"), ordenados por fecha, hasta los que empiezan dentro de diez días.
+- En los detalles de un evento, muestra las fechas, descripción, horario y precio (si los hubiera), así como la imagen asignada al evento (si existe), y permite realizar 4 acciones:
+  - Guardar un evento como *Favorito*. Los eventos favoritos se pueden consultar en una sección específica en el menú lateral.
+  - *Compartir* en redes sociales. Utiliza los menús nativos de iOS y Android, por lo que permite compartir en cualquier red social o App que tenga instalada el usuario en su dispositivo, por ejemplo Whatsapp, Telegram, Twitter, Facebook... * En el caso de la WebApp, esta funcionalidad de compartir está limitada a compartir en Twitter (por ahora).
+  - Abrir la *web original* del evento en la web oficial del ayuntamiento.
+  - Si los datos proporcionados por el Ayuntamiento incluyen la geolocalización del evento, permite mostrar la *ruta* para ir andando, en coche, o en transporte público, desde la - geolocalización actual del dispositivo hasta el lugar donde ocurre el evento, usando  la App nativa de mapas del dispositivo (como Google Maps y Apple Maps).  * En el caso de la WebApp, la ruta se muestra en el navegador web del dispositivo, mediante Google Maps.
 - Muestra la lista de eventos favoritos.
 - Muestra un mapa de favoritos, con la geolocalización de todos los eventos marcados como favorito. Si lo desea, el usuario puede clicar el evento en el mapa, yendo así a su - pantalla de detalle, donde puede solicitar la ruta para ir andando, en coche, o en transporte público, hasta el lugar del evento.
 
