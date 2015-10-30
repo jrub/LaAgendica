@@ -253,6 +253,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
   delete $rootScope.eventos;
 
   var tipoCap = $stateParams.tipo.charAt(0).toUpperCase() + $stateParams.tipo.slice(1);
+  $scope.title = tipoCap
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
   $http({
                     method: 'JSONP',
@@ -268,7 +269,6 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
                     }
                 }).success(function(data, status, headers, config) {
                     $scope.eventos = data.response.docs
-                    $scope.eventos.nav = tipoCap
                     $rootScope.eventos = data.response.docs
                     $scope.hayEventos = ($scope.eventos.length > 0)
                     $scope.textoNoContent = 'Actualmente no existen eventos para esta sección'
@@ -282,6 +282,7 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
 .controller('InfantilCtrl', function($scope, $http, $rootScope) {
   delete $rootScope.eventos;
 
+  $scope.title = "Infantil"
   $scope.hayEventos = true //hasta que no lo sepamos tras el callback de la llamada al API
   $http({
                     method: 'JSONP',
@@ -297,7 +298,6 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
                     }
                 }).success(function(data, status, headers, config) {
                     $scope.eventos = data.response.docs
-                    $scope.eventos.nav = "Infantil"
                     $rootScope.eventos = data.response.docs
                     $scope.hayEventos = ($scope.eventos.length > 0)
                     $scope.textoNoContent = 'Actualmente no existen eventos para esta sección'
@@ -311,7 +311,6 @@ angular.module('laAgendica.controllers', ['laAgendica.services', 'ngSanitize', '
   delete $rootScope.eventos;
 
   $scope.eventos = $localstorage.allObjects()
-  $scope.eventos.nav = "Favoritos"
   $rootScope.eventos = $scope.eventos
   $scope.hayEventos = ($scope.eventos.length > 0)
   $scope.textoNoContent = '¡Aún no tienes favoritos! \n\n Anímate a guardar tus eventos favoritos, y así podrás verlos en el mapa de un vistazo.'
