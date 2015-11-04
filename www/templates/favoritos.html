@@ -4,7 +4,7 @@
       <ion-item class="item-thumbnail-left" collection-repeat="evento in eventos" href="#/app/evento/{{$index}}">
         <!-- si es fav, y ha venido de Destacados, y no tiene img, llevará 'http:' y saldrá rota -->
         <img ng-show="evento.imagen_s && evento.imagen_s !== 'http:'" ng-src="{{evento.imagen_s}}"/>
-        <img class="list-thumb" ng-show="evento.imagen_s == '' || evento.imagen_s === undefined || evento.imagen_s === 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
+        <img class="list-thumb" ng-show="evento.imagen_s == '' || evento.imagen_s === undefined || evento.imagen_s === 'http:'" src='img/default-thumb.png'/>
         <h2>{{evento.title}}</h2>
         <h3 class="evpre" ng-show="evento.nombrelugar_t">{{evento.nombrelugar_t}}</h3>
         <p>Hasta el {{evento.fechaFinal_dt | date:'longDate'}}</p>

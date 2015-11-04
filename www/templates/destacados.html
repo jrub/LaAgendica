@@ -4,7 +4,7 @@
       <ion-item class="item-thumbnail-left" collection-repeat="evento in eventos" href="#/app/destacado/{{$index}}">
 
         <img ng-show="evento.image.value !== 'http:'" ng-src="{{evento.image.value}}"/>
-        <img class="list-thumb" ng-show="evento.image.value === 'http:'" src='https://raw.githubusercontent.com/jrub/LaAgendica/master/resources/icon.png'/>
+        <img class="list-thumb" ng-show="evento.image.value === 'http:'" src='img/default-thumb.png'/>
 
         <h2>{{evento.title.value}}</h2>
         <h3 class="evpre" ng-show="evento.lugar">{{evento.lugar.value}}</h3>
